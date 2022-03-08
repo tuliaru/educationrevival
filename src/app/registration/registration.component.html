@@ -4,18 +4,36 @@
         <p>Create your account to continue <br>and explore new <a href="#">courses.</a></p>
     </div>
     <div class="form-body">
-        <form action="#">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label for="" class="form-label">Candidate details</label>
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" placeholder="First name*" class="form-control">
+                        <input formControlName="firstName" type="text" placeholder="First name*" class="form-control" id="id_firstName" [class.is-invalid]="firstName.touched && firstName.invalid">
+						<div *ngIf="firstName.invalid && firstName.touched">
+							<div *ngIf="firstName.touched && firstName.errors?.required"
+								class="d-block invalid-feedback">
+								Provide your first name.
+							</div>
+						</div>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" placeholder="Last name*" class="form-control">
+                        <input formControlName="lastName" type="text" placeholder="Last name*" class="form-control" id="id_lastName" [class.is-invalid]="lastName.touched && lastName.invalid">
+						<div *ngIf="lastName.invalid && lastName.touched">
+							<div *ngIf="lastName.touched && lastName.errors?.required"
+								class="d-block invalid-feedback">
+								Provide your last name.
+							</div>
+						</div>
                     </div>
                     <div class="col-md-12">
-                        <input type="email" placeholder="Email address*" class="form-control">
+                        <input formControlName="email" type="email" placeholder="Email address*" class="form-control" id="id_email"  [class.is-invalid]="email.touched && email.invalid">
+						<div *ngIf="email.invalid && email.touched">
+							<div *ngIf="email.errors?.required" class="d-block invalid-feedback">Please
+								provide a email.</div>
+							<div *ngIf="email.errors?.email" class="d-block invalid-feedback">Email address
+								is not valid</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -24,13 +42,29 @@
                 <label for="" class="form-label">Parent details</label>
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" placeholder="First name*" class="form-control">
+                        <input formControlName="parentFirstName" type="text" placeholder="First name*" class="form-control" id="id_parent_first_name" [class.is-invalid]="parentFirstName.touched && parentFirstName.invalid">
+						<div *ngIf="parentFirstName.invalid && parentFirstName.touched">
+							<div *ngIf="parentFirstName.touched && parentFirstName.errors?.required"
+								class="d-block invalid-feedback">
+								Provide your parent first name.
+							</div>
+						</div>
                     </div>
                     <div class="col-md-6">
-                        <input type="text" placeholder="Last name*" class="form-control">
+                        <input formControlName="parentLastName" type="text" placeholder="Last name*" class="form-control" id="id_parent_last_name" [class.is-invalid]="parentLastName.touched && parentLastName.invalid">
+						<div *ngIf="parentLastName.invalid && parentLastName.touched">
+							<div *ngIf="parentLastName.touched && parentLastName.errors?.required"
+								class="d-block invalid-feedback">
+								Provide your parent last name.
+							</div>
+						</div>
                     </div>
                     <div class="col-md-12">
-                        <input type="email" placeholder="Email address*" class="form-control">
+                        <input  formControlName="parentEmail" type="email" placeholder="Email address*" class="form-control"  id="id_parent_email" [class.is-invalid]="parentEmail.invalid && parentEmail.touched">
+						<div *ngIf="parentEmail.invalid && parentEmail.touched">
+							<div *ngIf="parentEmail.errors?.required" class="d-block invalid-feedback">Please provide a parent email.</div>
+							<div *ngIf="parentEmail.errors?.email" class="d-block invalid-feedback">Parent email address is not valid</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -39,13 +73,17 @@
                 <label for="" class="form-label">Second Parent details</label>
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="text" placeholder="First name*" class="form-control">
+                        <input formControlName="secondParentFirstName" type="text" placeholder="First name" class="form-control"  id="id_second_parent_first_name">
                     </div>
                     <div class="col-md-6">
-                        <input type="text" placeholder="Last name*" class="form-control">
+                        <input formControlName="secondParentLastName" type="text" placeholder="Last name" class="form-control" id="id_second_parent_last_name">
                     </div>
                     <div class="col-md-12">
-                        <input type="email" placeholder="Email address*" class="form-control">
+						<input formControlName="secondParentEmail" type="email" placeholder="Email address*" class="form-control" id="id_second_parent_email" [class.is-invalid]="secondParentEmail.invalid && secondParentEmail.touched">
+						<div *ngIf="secondParentEmail.invalid && secondParentEmail.touched">
+							<div *ngIf="secondParentEmail.errors?.required" class="d-block invalid-feedback">Please provide a second parent email.</div>
+							<div *ngIf="secondParentEmail.errors?.email" class="d-block invalid-feedback">Second parent email address is not valid</div>
+						</div>
                     </div>
                 </div>
             </div>
@@ -53,8 +91,8 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
-                        <input type="submit" value="Generate New User" class="btn btn-primary">
-                        <div class="form-text text-center mt-3">Already have an account ? <a href="#">Login Here</a></div>
+                        <input type="submit" value="Generate New User" class="btn btn-primary" [disabled]="registerForm.invalid">
+                        <div class="form-text text-center mt-3">Already have an account ? <a href="/">Login Here</a></div>
                     </div>
                 </div>
             </div>
