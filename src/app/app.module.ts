@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormappComponent } from './formapp/formapp.component';
 import { LoginComponent } from './login/login.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { LoginComponent } from './login/login.component';
     FooterComponent,
     RegistrationComponent,
     FormappComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

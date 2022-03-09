@@ -1,0 +1,43 @@
+.dashboard-theme-gray{
+background: #E0E0E0;
+}
+.dropdown-toggle::after{
+display: none;
+}
+.dashboard-header{
+background-color: #fff;
+padding: 8px 0;
+margin-left: 280px;
+}
+.dashboard-container {
+display: flex;
+min-height: 100vh;
+flex-direction: column;
+margin: 0;
+}
+.dashboard-main {
+padding-top: 60px;
+}
+.dashboard-main {
+flex: 1;
+display: flex;
+z-index: 8;
+position: relative;
+}
+.dashboard-sidebar {
+width: 280px;
+display: flex;
+z-index: 11;
+overflow: hidden;
+min-width: 280px;
+position: relative;
+flex: 0 0 280px;
+margin-top: -60px;
+padding-top: 60px;
+transition: all .2s;
+background-color: #000;
+}
+.fixed-sidebar .dashboard-sidebar {
+position: fixed;
+height: 100vh;
+}

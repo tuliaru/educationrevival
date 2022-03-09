@@ -1,12 +1,12 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent implements OnInit,AfterViewInit {
+export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
 
   registerForm: FormGroup = this.fb.group({
     firstName: ['', [Validators.required]],
@@ -21,9 +21,10 @@ export class RegistrationComponent implements OnInit,AfterViewInit {
   });
   display:string = 'none';
   
-  @ViewChild('btnopen') btnopen?:ElementRef
+  @ViewChild('passwordGenModal') passwordGenModal?: ElementRef
 
-  constructor(private fb: FormBuilder) { 
+  isModalShow = false;
+  constructor(private fb: FormBuilder) {
    
   }
   
@@ -73,12 +74,20 @@ export class RegistrationComponent implements OnInit,AfterViewInit {
       
   }
   
+  ngOnDestroy() {
+    this.passwordGenModal?.nativeElement.click();
+  }
+
   onSubmit(){
     //this.btnopen?.nativeElement.click()
     const formData = this.registerForm.value;
     //formData.password = "test123466788"
     console.log(formData);
     // Api Request Here
+  }
+
+  close(){
+    this.isModalShow=true;
   }
 
 }
