@@ -19,11 +19,20 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
     secondParentLastName: [""],
     secondParentEmail: ['', [Validators.required, Validators.email]],
   });
+  
+   passwordForm: FormGroup = this.fb.group({
+    password: ['', [Validators.required]],
+    confirmPassword: ["", [Validators.required]]
+  });
+  
   display:string = 'none';
   
   @ViewChild('passwordGenModal') passwordGenModal?: ElementRef
 
   isModalShow = false;
+  formData = <any>{};
+  passwordFormData =  <any>{};
+  finalData = <any>{};
   constructor(private fb: FormBuilder) {
    
   }
@@ -69,6 +78,13 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
     return this.registerForm.get('secondParentEmail');
   }
   
+  get password(): any {
+    return this.passwordForm.get('password');
+  }
+  
+  get confirmPassword(): any {
+    return this.passwordForm.get('confirmPassword');
+  }
   
   ngAfterViewInit(): void {
       
@@ -80,10 +96,16 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
 
   onSubmit(){
     //this.btnopen?.nativeElement.click()
-    const formData = this.registerForm.value;
+    this.formData = this.registerForm.value;
     //formData.password = "test123466788"
-    console.log(formData);
+    console.log(this.formData);
     // Api Request Here
+  }
+  newPasswordSubmit()
+  {
+		this.passwordFormData = this.passwordForm.value;
+		this.finalData = {...this.formData,...this.passwordFormData};
+		console.log(this.finalData);
   }
 
   close(){

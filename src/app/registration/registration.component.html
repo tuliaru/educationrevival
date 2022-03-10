@@ -8,14 +8,26 @@
         </div>
         <div class="modal-body">
             <div class="form-body">
-                <form action="#">
+                <form [formGroup]="passwordForm" (ngSubmit)="newPasswordSubmit()">
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="password" placeholder="Password*" class="form-control">
+                                <input formControlName="password" type="password" placeholder="Password*" class="form-control" id="id_password" [class.is-invalid]="password.touched && password.invalid">
+								<div *ngIf="password.invalid && password.touched">
+									<div *ngIf="password.touched && password.errors?.required"
+										class="d-block invalid-feedback">
+										Please enter a password.
+									</div>
+								</div>
                             </div>
                             <div class="col-md-12">
-                                <input type="password" placeholder="Confirm password*" class="form-control">
+                                <input formControlName="confirmPassword" type="password" placeholder="Confirm password*" class="form-control"  id="id_confirm_password" [class.is-invalid]="confirmPassword.touched && confirmPassword.invalid">
+								<div *ngIf="confirmPassword.invalid && confirmPassword.touched">
+									<div *ngIf="confirmPassword.touched && confirmPassword.errors?.required"
+										class="d-block invalid-feedback">
+										Please enter confirm password.
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
@@ -23,7 +35,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <input type="submit" routerLink="/dashboard" value="Submit" class="btn btn-primary">
+                                <input type="submit" value="Submit" class="btn btn-primary" [disabled]="passwordForm.invalid">
                             </div>
                         </div>
                     </div>
@@ -41,7 +53,7 @@
             <div class="col-lg-6">
                 <h1>Education <br>Renaissance </h1>
                 <div class="img-drawer">
-                    <img src="../assets/images/form-left-img.png" alt="">
+                    <img src="./assets/images/form-left-img.png" alt="">
                 </div>
             </div>
             <div class="col-lg-1"></div>
