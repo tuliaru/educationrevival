@@ -1,17 +1,21 @@
-<div class="dashboard-container dashboard-theme-gray body-tabs-shadow fixed-sidebar fixed-header">
+<div class="body-slide dashboard-container dashboard-theme-gray body-tabs-shadow fixed-sidebar fixed-header" id="wrapper" [ngClass]="status ? 'hide' : 'show'">
     <header class="dashboard-header fixed-top">
-        <div class="container">
+       
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
+                    <a class="btn border-0" id="menu-btn" (click)="clickDashboardSidebar()">menu</a>
+                </div>
+                <div class="col-md-8">   
                     <div class="dashboard-user-outer d-flex align-items-center justify-content-end">
                         <div class="user-name me-3">Welcome SM</div>
-                        <div class="user-profile-img me-3"><img src="../assets/images/profile-img.png"></div>
+                        <div class="user-profile-img me-3"><img src="./assets/images/profile-img.png"></div>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="../assets/images/downarrow.png">
+                                <img src="./assets/images/downarrow.png">
                             </a>
                           
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
                               <li><a class="dropdown-item" href="#">Action</a></li>
                               <li><a class="dropdown-item" href="#">Another action</a></li>
                               <li><a class="dropdown-item" href="#">Something else here</a></li>
@@ -22,23 +26,28 @@
             </div>
         </div>
     </header>
-    <div class="dashboard-main">
-        <div class="dashboard-sidebar dashboard-shadow">
-            <div class="dashboard-sidebar_inner">
-                <h1 class="logo">Education <br>Renaissance </h1>
-                <div class="dashboard-menu">
-                    <ul>
-                        <li><a href="#"><img src="../assets/images/dashborad-menu-shape1.png">Student Progress</a></li>
-                        <li><a href="#"><img src="../assets/images/dashborad-menu-shape2.png">Completed Classes</a></li>
-                        <li><a href="#"><img src="../assets/images/dashborad-menu-shape3.png">Class Selection</a></li>
-                    </ul>
+    <div class="dashboard-main" id="page-content-wrapper">
+        <aside class="dashboard-sidebar dashboard-shadow side-navbar active-nav" id="sidebar-wrapper">
+           
+                <div class="dashboard-sidebar_inner">
+                    <h1 class="logo">Education <br>Renaissance </h1>
+                    <div class="dashboard-menu">
+                        <ul class="navbar-nav w-100 pb-3">
+                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape1.png"></span>Student Progress</a></li>
+                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape2.png"></span>Completed Classes</a></li>
+                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape3.png"></span>Class Selection</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="dashboard-main-outer">
+            
+        </aside>
+        <div class="dashboard-main-outer overflow-auto h-100 active-cont">
             <div class="dashboard-main-inner">
 
             </div>
         </div>
     </div>
+    <div [class.overlayVisited] = "overlayIsVisited == true" (click) = "overlayCheckVisited()" class="overley" id="overley"></div>
 </div>
+
+
