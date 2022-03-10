@@ -28,6 +28,9 @@
 										Please enter confirm password.
 									</div>
 								</div>
+								<div *ngIf="confirmPassword.valid && passwordForm.hasError('notSame')" class="d-block invalid-feedback">
+									Passsword and Confirm Password didn't match.
+								</div>
                             </div>
                         </div>
                     </div>

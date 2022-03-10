@@ -23,7 +23,13 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
    passwordForm: FormGroup = this.fb.group({
     password: ['', [Validators.required]],
     confirmPassword: ["", [Validators.required]]
-  });
+  }, { validator: this.checkPasswords });
+  
+  checkPasswords(group: FormGroup) {
+        const pass = group.controls["password"].value;
+        const confirmPass = group.controls["confirmPassword"].value;
+        return pass === confirmPass ? null : { notSame: true };
+    }
   
   display:string = 'none';
   
