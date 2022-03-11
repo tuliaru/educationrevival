@@ -34,8 +34,10 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   display:string = 'none';
   
   @ViewChild('passwordGenModal') passwordGenModal?: ElementRef
+  @ViewChild('openSucessModal') openSucessModal?: ElementRef
 
   isModalShow = false;
+  isSuccessModalShow = true;
   formData = <any>{};
   passwordFormData =  <any>{};
   finalData = <any>{};
@@ -101,16 +103,17 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   }
 
   onSubmit(){
-    //this.btnopen?.nativeElement.click()
-    this.formData = this.registerForm.value;
-    //formData.password = "test123466788"
-    console.log(this.formData);
-    // Api Request Here
+        this.formData = this.registerForm.value;
+    
   }
   newPasswordSubmit()
   {
 		this.passwordFormData = this.passwordForm.value;
 		this.finalData = {...this.formData,...this.passwordFormData};
+		this.passwordGenModal?.nativeElement.click();
+		this.registerForm.reset();
+		this.passwordForm.reset();
+		this.openSucessModal?.nativeElement.click();
 		console.log(this.finalData);
   }
 

@@ -1,10 +1,28 @@
-<!-- Modal -->
-<div #passwordGenModal [hidden]="isModalShow" class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+<!-- Modal for success -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+			<svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+			  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+			  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+			</svg>	
+			<p class="success text-center">Registration Successful</p>
+		 </div>
+	</div>
+	</div>
+	</div>
+	<button #openSucessModal type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#successModal"></button>
+
+
+<!-- Modal for password-->
+
+<div  [hidden]="isModalShow" class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h3 class="modal-title" id="passwordModalLabel">Input your new password</h3>
-          <button (click)="close()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button #passwordGenModal  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="form-body">
@@ -12,7 +30,7 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-md-12">
-                                <input formControlName="password" type="password" placeholder="Password*" class="form-control" id="id_password" [class.is-invalid]="password.touched && password.invalid">
+                                <input formControlName="password" type="password" placeholder="Password*" class="form-control" id="id_password" [class.is-invalid]="password.touched && password.invalid" [class.is-valid]="password.touched && password.valid">
 								<div *ngIf="password.invalid && password.touched">
 									<div *ngIf="password.touched && password.errors?.required"
 										class="d-block invalid-feedback">
@@ -21,7 +39,7 @@
 								</div>
                             </div>
                             <div class="col-md-12">
-                                <input formControlName="confirmPassword" type="password" placeholder="Confirm password*" class="form-control"  id="id_confirm_password" [class.is-invalid]="confirmPassword.touched && confirmPassword.invalid">
+                                <input formControlName="confirmPassword" type="password" placeholder="Confirm password*" class="form-control"  id="id_confirm_password" [class.is-invalid]="confirmPassword.touched && confirmPassword.invalid" [class.is-valid]="confirmPassword.touched && confirmPassword.valid && !passwordForm.hasError('notSame')">
 								<div *ngIf="confirmPassword.invalid && confirmPassword.touched">
 									<div *ngIf="confirmPassword.touched && confirmPassword.errors?.required"
 										class="d-block invalid-feedback">
@@ -82,7 +100,7 @@
                                 <label for="" class="form-label">Candidate details</label>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input formControlName="firstName" type="text" placeholder="First name*" class="form-control" id="id_firstName" [class.is-invalid]="firstName.touched && firstName.invalid">
+                                        <input formControlName="firstName" type="text" placeholder="First name*" class="form-control" id="id_firstName" [class.is-invalid]="firstName.touched && firstName.invalid" [class.is-valid]="firstName.touched && firstName.valid">
                                         <div *ngIf="firstName.invalid && firstName.touched">
                                             <div *ngIf="firstName.touched && firstName.errors?.required"
                                                 class="d-block invalid-feedback">
@@ -91,7 +109,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <input formControlName="lastName" type="text" placeholder="Last name*" class="form-control" id="id_lastName" [class.is-invalid]="lastName.touched && lastName.invalid">
+                                        <input formControlName="lastName" type="text" placeholder="Last name*" class="form-control" id="id_lastName" [class.is-invalid]="lastName.touched && lastName.invalid" [class.is-valid]="lastName.touched && lastName.valid">
                                         <div *ngIf="lastName.invalid && lastName.touched">
                                             <div *ngIf="lastName.touched && lastName.errors?.required"
                                                 class="d-block invalid-feedback">
@@ -100,7 +118,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input formControlName="email" type="email" placeholder="Email address*" class="form-control" id="id_email"  [class.is-invalid]="email.touched && email.invalid">
+                                        <input formControlName="email" type="email" placeholder="Email address*" class="form-control" id="id_email"  [class.is-invalid]="email.touched && email.invalid" [class.is-valid]="email.touched && email.valid">
                                         <div *ngIf="email.invalid && email.touched">
                                             <div *ngIf="email.errors?.required" class="d-block invalid-feedback">Please
                                                 provide a email.</div>
@@ -115,7 +133,7 @@
                                 <label for="" class="form-label">Parent details</label>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <input formControlName="parentFirstName" type="text" placeholder="First name*" class="form-control" id="id_parent_first_name" [class.is-invalid]="parentFirstName.touched && parentFirstName.invalid">
+                                        <input formControlName="parentFirstName" type="text" placeholder="First name*" class="form-control" id="id_parent_first_name" [class.is-invalid]="parentFirstName.touched && parentFirstName.invalid"  [class.is-valid]="parentFirstName.touched && parentFirstName.valid">
                                         <div *ngIf="parentFirstName.invalid && parentFirstName.touched">
                                             <div *ngIf="parentFirstName.touched && parentFirstName.errors?.required"
                                                 class="d-block invalid-feedback">
@@ -124,7 +142,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <input formControlName="parentLastName" type="text" placeholder="Last name*" class="form-control" id="id_parent_last_name" [class.is-invalid]="parentLastName.touched && parentLastName.invalid">
+                                        <input formControlName="parentLastName" type="text" placeholder="Last name*" class="form-control" id="id_parent_last_name" [class.is-invalid]="parentLastName.touched && parentLastName.invalid" [class.is-valid]="parentLastName.touched && parentLastName.valid">
                                         <div *ngIf="parentLastName.invalid && parentLastName.touched">
                                             <div *ngIf="parentLastName.touched && parentLastName.errors?.required"
                                                 class="d-block invalid-feedback">
@@ -133,7 +151,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input  formControlName="parentEmail" type="email" placeholder="Email address*" class="form-control"  id="id_parent_email" [class.is-invalid]="parentEmail.invalid && parentEmail.touched">
+                                        <input  formControlName="parentEmail" type="email" placeholder="Email address*" class="form-control"  id="id_parent_email" [class.is-invalid]="parentEmail.invalid && parentEmail.touched" [class.is-valid]="parentEmail.touched && parentEmail.valid">
                                         <div *ngIf="parentEmail.invalid && parentEmail.touched">
                                             <div *ngIf="parentEmail.errors?.required" class="d-block invalid-feedback">Please provide a parent email.</div>
                                             <div *ngIf="parentEmail.errors?.email" class="d-block invalid-feedback">Parent email address is not valid</div>
@@ -152,7 +170,7 @@
                                         <input formControlName="secondParentLastName" type="text" placeholder="Last name" class="form-control" id="id_second_parent_last_name">
                                     </div>
                                     <div class="col-md-12">
-                                        <input formControlName="secondParentEmail" type="email" placeholder="Email address*" class="form-control" id="id_second_parent_email" [class.is-invalid]="secondParentEmail.invalid && secondParentEmail.touched">
+                                        <input formControlName="secondParentEmail" type="email" placeholder="Email address*" class="form-control" id="id_second_parent_email" [class.is-invalid]="secondParentEmail.invalid && secondParentEmail.touched" [class.is-valid]="secondParentEmail.touched && secondParentEmail.valid">
                                         <div *ngIf="secondParentEmail.invalid && secondParentEmail.touched">
                                             <div *ngIf="secondParentEmail.errors?.required" class="d-block invalid-feedback">Please provide a second parent email.</div>
                                             <div *ngIf="secondParentEmail.errors?.email" class="d-block invalid-feedback">Second parent email address is not valid</div>
