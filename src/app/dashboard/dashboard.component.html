@@ -1,10 +1,13 @@
 <div class="body-slide dashboard-container dashboard-theme-gray body-tabs-shadow fixed-sidebar fixed-header" id="wrapper" [ngClass]="status ? 'hide' : 'show'">
     <header class="dashboard-header fixed-top">
        
-        <div class="container-fluid">
+        <div class="container-fluid px-lg-5 px-md-2">
             <div class="row">
                 <div class="col-md-4">
-                    <a class="btn border-0" id="menu-btn" (click)="clickDashboardSidebar()">menu</a>
+                    <a class="btn border-0" id="menu-btn" (click)="clickDashboardSidebar()">
+                        <div class="menu-open"><img src="./assets/images/menu_hamburger_navigation_icon.svg"></div>
+                        <div class="menu-close"><img src="./assets/images/close_cancel_cross_delete_exit_icon.svg"></div>
+                    </a>
                 </div>
                 <div class="col-md-8">   
                     <div class="dashboard-user-outer d-flex align-items-center justify-content-end">
@@ -33,17 +36,17 @@
                     <h1 class="logo">Education <br>Renaissance </h1>
                     <div class="dashboard-menu">
                         <ul class="navbar-nav w-100 pb-3">
-                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape1.png"></span>Student Progress</a></li>
-                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape2.png"></span>Completed Classes</a></li>
-                            <li><a href="#"><span><img src="./assets/images/dashborad-menu-shape3.png"></span>Class Selection</a></li>
+                            <li><a href="#student-progress" routerLink="student-progress"><span><img src="./assets/images/progress_nav_ico.svg"></span>Student Progress</a></li>
+                            <li><a href="#completed-classes" routerLink="completed-classes"><span><img src="./assets/images/comclass_nav_ico.svg"></span>Completed Classes</a></li>
+                            <li><a href="#class-selection" routerLink="class-selection"><span><img src="./assets/images/selection_nav_ico.svg"></span>Class Selection</a></li>
                         </ul>
                     </div>
                 </div>
             
         </aside>
-        <div class="dashboard-main-outer overflow-auto h-100 active-cont">
+        <div class="dashboard-main-outer overflow-auto vw-100 active-cont">
             <div class="dashboard-main-inner">
-
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

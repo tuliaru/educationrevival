@@ -42,7 +42,7 @@ min-width: 280px;
 position: relative;
 flex: 0 0 317px;
 margin-top: -60px;
-padding-top: 60px;
+padding-top: 30px;
 transition: all .2s;
 background-color: #000;
 }
@@ -57,6 +57,10 @@ color: #fff;
 line-height: 40px;
 text-align: left;
 font-weight: 900;
+-webkit-transition: font-size .25s ease-out;
+-moz-transition: font-size .25s ease-out;
+-o-transition: font-size .25s ease-out;
+transition: font-size .25s ease-out;
 }
 .dashboard-menu ul{
 padding: 0;
@@ -81,10 +85,12 @@ background-color: #333;
 }
 .dashboard-menu ul li a span{
 display: inline-block;
-vertical-align: middle;
-margin-right: 10px;
-width: 30px;
-height: 30px;
+vertical-align: bottom;
+margin-right: 15px;
+width: 25px;
+}
+.dashboard-menu ul li a span img{
+width: 25px;
 }
 .dropdown a.dropdown-toggle {
 display: block;
@@ -121,6 +127,12 @@ transition: left .25s ease-out;
 -o-transition: margin .25s ease-out;
 transition: margin .25s ease-out;  
 }
+.dashboard-main .dashboard-main-outer {
+-webkit-transition: padding .25s ease-out;
+-moz-transition: padding .25s ease-out;
+-o-transition: padding .25s ease-out;
+transition: padding .25s ease-out;  
+}
 
 #page-content-wrapper {
 min-width: 100vw;
@@ -129,8 +141,21 @@ min-width: 100vw;
 #wrapper.toggled #sidebar-wrapper {
 margin-left: 0;
 }
-
-@media (min-width: 768px) {
+#menu-btn .menu-open,
+#menu-btn .menu-close{
+width: 30px;
+border: 2px solid #000;
+}
+.show #menu-btn .menu-open, .hide #menu-btn .menu-close{
+display: block;
+}
+.hide #menu-btn .menu-open, .show #menu-btn .menu-close{
+display: none;
+}
+.dashboard-sidebar_inner {
+width: 100%;
+}
+@media (min-width: 850px) {
 #sidebar-wrapper {
 margin-left: 0;
 }
@@ -151,11 +176,21 @@ width: 80px;
 .hide .dashboard-header{
 margin-left: 80px!important;
 }
+.hide.fixed-sidebar .dashboard-main .dashboard-main-outer{
+padding-left: 80px;
+}
 .hide .dashboard-menu ul li a{
 font-size: 0;
+line-height: 0;
+}
+.hide h1.logo {
+font-size: 10px;
+line-height: 14px;
+text-align: center;
+padding: 20px 5px;
 }
 }
-@media (max-width: 767px) {
+@media (max-width: 850px) {
 .show #sidebar-wrapper
 {
 left: -317px !important;
@@ -167,6 +202,10 @@ left: 0 !important;
 
 .dashboard-header{
 margin-left: 0;
+}
+.fixed-sidebar .dashboard-main .dashboard-main-outer{
+z-index: 9;
+padding-left: 0;
 }
 .overley {
 position: fixed;

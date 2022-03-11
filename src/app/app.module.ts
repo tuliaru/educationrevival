@@ -9,6 +9,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { FormappComponent } from './formapp/formapp.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StudentProgressComponent } from './student-progress/student-progress.component';
+import { CompletedClassesComponent } from './completed-classes/completed-classes.component';
+import { ClassSelectionComponent } from './class-selection/class-selection.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     RegistrationComponent,
     FormappComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    StudentProgressComponent,
+    CompletedClassesComponent,
+    ClassSelectionComponent
   ],
   imports: [
     BrowserModule,
