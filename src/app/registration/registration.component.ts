@@ -19,11 +19,28 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
     secondParentLastName: [""],
     secondParentEmail: ['', [Validators.required, Validators.email]],
   });
+  
+   passwordForm: FormGroup = this.fb.group({
+    password: ['', [Validators.required]],
+    confirmPassword: ["", [Validators.required]]
+  }, { validator: this.checkPasswords });
+  
+  checkPasswords(group: FormGroup) {
+        const pass = group.controls["password"].value;
+        const confirmPass = group.controls["confirmPassword"].value;
+        return pass === confirmPass ? null : { notSame: true };
+    }
+  
   display:string = 'none';
   
   @ViewChild('passwordGenModal') passwordGenModal?: ElementRef
+  @ViewChild('openSucessModal') openSucessModal?: ElementRef
 
   isModalShow = false;
+  isSuccessModalShow = true;
+  formData = <any>{};
+  passwordFormData =  <any>{};
+  finalData = <any>{};
   constructor(private fb: FormBuilder) {
    
   }
@@ -69,6 +86,13 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
     return this.registerForm.get('secondParentEmail');
   }
   
+  get password(): any {
+    return this.passwordForm.get('password');
+  }
+  
+  get confirmPassword(): any {
+    return this.passwordForm.get('confirmPassword');
+  }
   
   ngAfterViewInit(): void {
       
@@ -79,11 +103,18 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   }
 
   onSubmit(){
-    //this.btnopen?.nativeElement.click()
-    const formData = this.registerForm.value;
-    //formData.password = "test123466788"
-    console.log(formData);
-    // Api Request Here
+        this.formData = this.registerForm.value;
+    
+  }
+  newPasswordSubmit()
+  {
+		this.passwordFormData = this.passwordForm.value;
+		this.finalData = {...this.formData,...this.passwordFormData};
+		this.passwordGenModal?.nativeElement.click();
+		this.registerForm.reset();
+		this.passwordForm.reset();
+		this.openSucessModal?.nativeElement.click();
+		console.log(this.finalData);
   }
 
   close(){
