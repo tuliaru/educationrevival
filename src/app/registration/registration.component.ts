@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { RegistrationService } from '../services/registration/registration.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
 @Component({
@@ -41,7 +42,9 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   formData = <any>{};
   passwordFormData =  <any>{};
   finalData = <any>{};
-  constructor(private fb: FormBuilder) {
+  formObj = <any>{};
+  
+  constructor(private fb: FormBuilder,public registrationService: RegistrationService) {
    
   }
   
@@ -109,12 +112,26 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   newPasswordSubmit()
   {
 		this.passwordFormData = this.passwordForm.value;
-		this.finalData = {...this.formData,...this.passwordFormData};
+		this.formObj = {...this.formData,...this.passwordFormData};
+		this.finalData = {
+			studentFirstLastName: this.formObj.firstName + " " + this.formObj.lastName,
+			studentEmail: this.formObj.email,
+			parentFirstLastName: this.formObj.parentFirstName + " " + this.formObj.parentLastName,
+			parentEmail: this.formObj.parentEmail,
+			parent2FirstLastName: this.formObj.secondParentFirstName + " " + this.formObj.secondParentLastName,
+			parent2Email: this.formObj.secondParentEmail,
+			password: this.formObj.password
+		}
 		this.passwordGenModal?.nativeElement.click();
 		this.registerForm.reset();
 		this.passwordForm.reset();
 		this.openSucessModal?.nativeElement.click();
-		console.log(this.finalData);
+		console.log(this.formObj);
+		
+		this.registrationService.create(this.finalData).subscribe((res:any) => {
+			 console.log('User created successfully!');
+			 
+		})
   }
 
   close(){
