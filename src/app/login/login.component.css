@@ -78,4 +78,62 @@ font-weight: 400;
 .form-text{
 font-size: 18px;
 }
-    
+.invalid-feedback {
+color: #fff;
+position: relative;
+bottom: 14px;
+left: 0;
+font-size: 13px;
+background: red;
+width: auto;
+padding: 0 5px;
+line-height: 18px;
+border-radius: 3px;
+}
+#successModal p.success {
+font-size: 22px;
+font-weight: 600;
+text-transform: capitalize;
+}
+@media (max-width: 850px){
+.formbody{
+padding: 50px 0;
+}
+}
+@media (max-width: 600px){
+.img-drawer{
+display: none;
+}
+h1{
+font-size: 40px;
+line-height: 44px;
+margin-bottom: 30px;
+text-align: center;
+}
+.form-head h2 {
+font-size: 20px;
+line-height: 24px;
+color: #000;
+font-weight: 700;
+text-align: center;
+}
+.form-head {
+margin-bottom: 30px;
+font-size: 16px;
+line-height: 23px;
+color: #040404;
+text-align: center;
+}
+.form-nav ul li a{
+width: 130px;
+}
+.form-control{
+margin-bottom: 10px;
+font-size: 14px;
+line-height:18px;
+}
+.form-label{
+margin-bottom: 10px;
+margin-top: 10px;
+}
+}  

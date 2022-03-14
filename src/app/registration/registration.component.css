@@ -103,33 +103,33 @@ border-radius: 50%;
 border: 2px solid #2d2d2d;
 }
 .checkmark__circle {
-  stroke-dasharray: 166;
-  stroke-dashoffset: 166;
-  stroke-width: 2;
-  stroke-miterlimit: 10;
-  stroke: #7ac142;
-  fill: none;
-  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+stroke-dasharray: 166;
+stroke-dashoffset: 166;
+stroke-width: 2;
+stroke-miterlimit: 10;
+stroke: #7ac142;
+fill: none;
+animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
 
 .checkmark {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  display: block;
-  stroke-width: 2;
-  stroke: #fff;
-  stroke-miterlimit: 10;
-  margin: 10% auto;
-  box-shadow: inset 0px 0px 0px #7ac142;
-  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+width: 56px;
+height: 56px;
+border-radius: 50%;
+display: block;
+stroke-width: 2;
+stroke: #fff;
+stroke-miterlimit: 10;
+margin:10% auto 5%;
+box-shadow: inset 0px 0px 0px #7ac142;
+animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
 
 .checkmark__check {
-  transform-origin: 50% 50%;
-  stroke-dasharray: 48;
-  stroke-dashoffset: 48;
-  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+transform-origin: 50% 50%;
+stroke-dasharray: 48;
+stroke-dashoffset: 48;
+animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
 
 @keyframes stroke {
@@ -153,5 +153,64 @@ border: 2px solid #2d2d2d;
 @media (min-width: 576px){
 .modal-dialog {
 max-width: 580px;
+}
+}
+.invalid-feedback {
+color: #fff;
+position: relative;
+bottom: 14px;
+left: 0;
+font-size: 13px;
+background: red;
+width: auto;
+padding: 0 5px;
+line-height: 18px;
+border-radius: 3px;
+}
+#successModal p.success {
+font-size: 22px;
+font-weight: 600;
+text-transform: capitalize;
+}
+@media (max-width: 850px){
+.formbody{
+padding: 50px 0;
+}
+}
+@media (max-width: 600px){
+.img-drawer{
+display: none;
+}
+h1{
+font-size: 40px;
+line-height: 44px;
+margin-bottom: 30px;
+text-align: center;
+}
+.form-head h2 {
+font-size: 20px;
+line-height: 24px;
+color: #000;
+font-weight: 700;
+text-align: center;
+}
+.form-head {
+margin-bottom: 30px;
+font-size: 16px;
+line-height: 23px;
+color: #040404;
+text-align: center;
+}
+.form-nav ul li a{
+width: 130px;
+}
+.form-control{
+margin-bottom: 10px;
+font-size: 14px;
+line-height:18px;
+}
+.form-label{
+margin-bottom: 10px;
+margin-top: 10px;
 }
 }

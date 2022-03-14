@@ -9,3 +9,8 @@ color:#fff;
 margin: 0;
 letter-spacing: 1.2;
 }
+@media (max-width: 850px){
+footer {
+text-align: center;
+}
+}
