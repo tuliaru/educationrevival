@@ -120,7 +120,7 @@ display: block;
 stroke-width: 2;
 stroke: #fff;
 stroke-miterlimit: 10;
-margin:10% auto 5%;
+margin:5% auto 5%;
 box-shadow: inset 0px 0px 0px #7ac142;
 animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
 }
@@ -172,6 +172,17 @@ font-size: 22px;
 font-weight: 600;
 text-transform: capitalize;
 }
+.form-control.is-valid:focus, .was-validated .form-control:valid:focus {
+border-color:green;
+box-shadow:none;
+}
+.form-control.is-invalid:focus, .was-validated .form-control:invalid:focus {
+border-color: red;
+box-shadow:none;
+}
+#successModal .modal-header {
+padding: 0;
+}
 @media (max-width: 850px){
 .formbody{
 padding: 50px 0;
@@ -212,5 +223,29 @@ line-height:18px;
 .form-label{
 margin-bottom: 10px;
 margin-top: 10px;
+}
+.form-group.pt-sm-4 {
+margin-top: 25px;
+}
+.modal-header {
+padding: 20px 24px 20px;
+}
+h3.modal-title{
+font-size: 20px;
+font-weight: 700;
+line-height: 24px;
+}
+.modal-body {
+padding: 0 24px 20px;
+}
+.modal-body .btn-primary {
+padding: 7px 20px 7px;
+min-width: 200px;
+}
+.modal-content{
+border-radius: 10px;
+}
+.invalid-feedback{
+bottom: 4px;
 }
 }
