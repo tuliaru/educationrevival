@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterStudentForClassService } from '../services/registerStudentForClass/register-student-for-class.service';
 
 @Component({
   selector: 'app-class-selection',
@@ -7,9 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClassSelectionComponent implements OnInit {
 
-  constructor() { }
+  finalData = <any>{};
+
+  constructor(private registerStudentForClassService:RegisterStudentForClassService) { }
 
   ngOnInit(): void {
   }
+
+  registerStudentForClass(studentId: number, courseId: number){
+
+    this.finalData = {
+			function: "registerStudentForClass",
+			studentId: studentId,
+			courseId: courseId
+		}
+
+    console.log(this.finalData);
+		
+		this.registerStudentForClassService.create(this.finalData).subscribe((res:any) => {
+			 console.log('Student successfully registered for class!');
+			 
+		})
+
+  }
+
 
 }
