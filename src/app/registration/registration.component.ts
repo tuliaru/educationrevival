@@ -114,6 +114,7 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
 		this.passwordFormData = this.passwordForm.value;
 		this.formObj = {...this.formData,...this.passwordFormData};
 		this.finalData = {
+			function: "createNewStudentAccount",
 			studentFirstLastName: this.formObj.firstName + " " + this.formObj.lastName,
 			studentEmail: this.formObj.email,
 			parentFirstLastName: this.formObj.parentFirstName + " " + this.formObj.parentLastName,

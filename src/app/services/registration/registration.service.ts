@@ -24,7 +24,7 @@ export class RegistrationService {
 	
 	create(registration:Registration): Observable<any> {
   
-		return this.httpClient.post(this.apiURL + '/createNewStudentAccount/', JSON.stringify(registration), this.httpOptions)
+		return this.httpClient.post(this.apiURL , JSON.stringify(registration), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)
