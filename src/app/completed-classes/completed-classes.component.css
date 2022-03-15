@@ -65,3 +65,49 @@ font-size: 16px;
 font-weight: 400;
 text-align: right;
 }
+@media (max-width: 1380px){
+.dashboard-class-box  .score-label {
+font-size: 12px;
+}
+.dashboard-class-box  .btn-dark.btn-sm{
+padding: 5px 10px;
+}
+}
+@media (max-width: 1000px){
+.add-padding{
+padding-top: 40px;
+padding-bottom: 40px;
+}
+.dashboard-class-box .text-center {
+text-align: left !important;
+}
+.dashboard-class-box .row .col-md-6 {
+background: #efefef;
+padding: 10px;
+margin: 5px;
+width: 48%;
+min-height: 60px;
+align-items: center;
+display: flex;
+flex-wrap: wrap;
+}
+.progress-outer{
+width: 100%;
+}
+
+}
+@media (max-width: 600px){
+.dashboard-class-box .row .col-md-6 {
+margin: 5px auto;
+width: 100%;
+min-height: 60px;
+}
+.dashboard-header .col-sm-4,
+.dashboard-header .col-sm-8{
+width: 50%;
+}
+.dashboard-inner-head h2{
+margin-bottom: 20px;
+text-align: center;
+}
+}
