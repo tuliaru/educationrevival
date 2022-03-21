@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit() {
+
+    //localStorage.removeItem("currentUser");
+    const user = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log("user",user);
+       if(user !== null) this.router.navigate(['/dashboard']);
+    
     this.loginForm = this.formBuilder.group({
         email: ['', Validators.required],
         password: ['', Validators.required]
@@ -57,7 +63,13 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe((res:any) => {
               console.log(res);
-              console.log('User logged in successfully!');
+              if(res){
+                console.log('User logged in successfully!');
+                this.router.navigate(['/dashboard']);
+              }else{
+                console.log("FALSEEEEE");
+              }
+              
               
            });
            

@@ -9,16 +9,17 @@ import { ClassSelectionComponent } from './class-selection/class-selection.compo
 import { AuthGuard } from './services/login/auth.guard';
 
 const routes: Routes = [
-  {path : 'login', component: LoginComponent, canActivate: [AuthGuard]},
-  {path : 'register', component: RegistrationComponent, canActivate: [AuthGuard]},
+  {path : 'login', component: LoginComponent},
+  {path : 'register', component: RegistrationComponent},
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
   {path : 'dashboard', 
   component: DashboardComponent,
   children: [
-    {path : 'student-progress', component: StudentProgressComponent, canActivate: [AuthGuard]},
-    {path : 'completed-classes', component: CompletedClassesComponent, canActivate: [AuthGuard]},
-    {path : 'class-selection', component: ClassSelectionComponent, canActivate: [AuthGuard]}
-  ]
+    {path : 'student-progress', component: StudentProgressComponent},
+    {path : 'completed-classes', component: CompletedClassesComponent},
+    {path : 'class-selection', component: ClassSelectionComponent}
+  ],
+  canActivate: [AuthGuard]
   }
 ];
 
