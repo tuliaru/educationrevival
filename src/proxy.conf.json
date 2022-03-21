@@ -1,0 +1,9 @@
+{
+    "/~educationrevival/backend/index.php": {
+      "target": "http://209.59.175.99",
+      "secure": false,
+      "changeOrigin": true,
+	  "logLevel": "debug"
+     
+    }
+  }

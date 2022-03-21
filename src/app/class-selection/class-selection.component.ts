@@ -13,6 +13,7 @@ export class ClassSelectionComponent implements OnInit {
   constructor(private registerStudentForClassService:RegisterStudentForClassService) { }
 
   ngOnInit(): void {
+    console.log("CLASS");
   }
 
   registerStudentForClass(studentId: number, courseId: number){

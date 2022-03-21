@@ -6,17 +6,18 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { StudentProgressComponent } from './student-progress/student-progress.component'
 import { CompletedClassesComponent } from './completed-classes/completed-classes.component'
 import { ClassSelectionComponent } from './class-selection/class-selection.component'
+import { AuthGuard } from './services/login/auth.guard';
 
 const routes: Routes = [
-  {path : 'login', component: LoginComponent},
-  {path : 'register', component: RegistrationComponent},
+  {path : 'login', component: LoginComponent, canActivate: [AuthGuard]},
+  {path : 'register', component: RegistrationComponent, canActivate: [AuthGuard]},
   {path: '',   redirectTo: '/login', pathMatch: 'full'},
   {path : 'dashboard', 
   component: DashboardComponent,
   children: [
-    {path : 'student-progress', component: StudentProgressComponent},
-    {path : 'completed-classes', component: CompletedClassesComponent},
-    {path : 'class-selection', component: ClassSelectionComponent}
+    {path : 'student-progress', component: StudentProgressComponent, canActivate: [AuthGuard]},
+    {path : 'completed-classes', component: CompletedClassesComponent, canActivate: [AuthGuard]},
+    {path : 'class-selection', component: ClassSelectionComponent, canActivate: [AuthGuard]}
   ]
   }
 ];
@@ -26,6 +27,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }

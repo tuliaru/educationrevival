@@ -14,6 +14,8 @@ import { StudentProgressComponent } from './student-progress/student-progress.co
 import { CompletedClassesComponent } from './completed-classes/completed-classes.component';
 import { ClassSelectionComponent } from './class-selection/class-selection.component';
 
+import { AuthGuard } from './services/login/auth.guard';
+import { AuthService } from './services/login/auth.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { ClassSelectionComponent } from './class-selection/class-selection.compo
 	HttpClientModule,
 	ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

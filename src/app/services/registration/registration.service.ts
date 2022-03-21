@@ -11,7 +11,7 @@ import { Registration } from './registration';
 })
 export class RegistrationService {
 
-	private apiURL = "http://209.59.175.99/~educationrevival/backend/index.php";
+	private apiURL = "/~educationrevival/backend/index.php";
 	
 	/*------------ Http Header Options ----------*/
 	httpOptions = {

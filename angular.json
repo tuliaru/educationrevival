@@ -74,7 +74,8 @@
               "browserTarget": "educationrevival:build:production"
             },
             "development": {
-              "browserTarget": "educationrevival:build:development"
+              "browserTarget": "educationrevival:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
