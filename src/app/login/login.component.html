@@ -24,6 +24,10 @@
                 <div class="register-form-outer">
                     <div class="form-head">
                         <h2>Login to your account</h2>
+                        <div *ngIf="isUserLoggedInError"
+										class="mt-4 d-block invalid-feedback">
+										Invalid Credentials.
+                        </div>
                     </div>
                     <div class="form-body">
                         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
