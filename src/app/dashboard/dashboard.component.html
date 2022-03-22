@@ -1,4 +1,4 @@
-<!--modal-->
+<!--video modal-->
 <div class="modal fade" id="videosModal" tabindex="-1" aria-labelledby="videosModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -13,6 +13,36 @@
             </div>
             <div class="center">
                 <button #videosModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Close</button>
+            </div>
+		 </div>
+	</div>
+	</div>
+	</div>
+
+<!--time modal-->
+<div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="timeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2>The next segment<br> is about to begin.</h2>
+              </div>
+			<div class="time-box">
+                <div class="time-count">
+                    <h3>
+                        <span>03:<em>min.</em></span>
+                        <span>00<em>sec.</em></span>
+                    </h3>
+                </div>
+                <div class="time-txt">
+                    <p>Click OK to start now -- or it will start automatically in 3 minutes. 
+                        If you need more time before the start of the next segment, 
+                        click STOP and return later through the Student Progress page.</p>
+                </div>
+            </div>
+            <div class="text-center">
+                <button #timeModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Stop</button>
+                <a #timeModal type="button" class="btn btn-primary" href="#">Ok</a>
             </div>
 		 </div>
 	</div>

@@ -158,8 +158,9 @@ width: 100%;
 .modal-content{
 border-radius: 50px;
 }
-#videosModal .btn.btn-danger.btn-close {
-width: 100px;
+#videosModal .btn.btn-danger.btn-close,
+#timeModal .btn.btn-danger.btn-close {
+width:100px;
 height: auto;
 background: #F4585B;
 color: #fff;
@@ -171,12 +172,75 @@ border-radius: 30px;
 font-weight: 600;
 font-size: 18px;
 }
-#videosModal .btn.btn-danger.btn-close:hover {
+#videosModal .btn.btn-danger.btn-close:hover,
+#timeModal .btn.btn-danger.btn-close:hover {
 color: #fff;
 background-color: #bb2d3b;
 border-color: #b02a37;
 }
+#timeModal .btn.btn-primary {
+width: 140px;
+height: auto;
+margin: 60px 5px;
+display: block;
+padding: 6px 20px 8px 20px;
+border-radius: 30px;
+font-weight: 600;
+font-size: 18px;
+min-width: 140px;
+}
+.modal-open {
+padding: 0 !important;
+}
+.modal-backdrop{
+z-index: 999999;
+}
+.modal{
+z-index: 9999999;
+}
+#timeModal .modal-header {
+width: 100%;
+border: none;
+margin-bottom: 20px;
+}
+#timeModal .modal-body {
+padding: 50px;
+}
+#timeModal h2{
+text-align: center;
+width: 100%;
+}
+#timeModal .time-count {
+text-align: center;
+margin-bottom: 30px;
+}
+#timeModal .time-count span {
+font-size: 114px;
+line-height: 114px;
+display: inline-block;
+font-weight: 800;
+color: #39F;
+}
+#timeModal .time-count em {
+color: #4F4F4F;
+font-size: 18px;
+font-style: normal;
+display: block;
+font-weight: 400;
+line-height: 22px;
+}
+#timeModal .time-txt {
+font-size: 18px;
+text-align: center;
+line-height: 22px;
+}
+#timeModal .btn.btn-danger.btn-close,
+#timeModal .btn.btn-primary {
+display: inline-block;
+margin:40px 5px 20px 5px;
+}
 @media (min-width: 1200px) {
+  
 #sidebar-wrapper {
 margin-left: 0;
 }
@@ -267,5 +331,7 @@ font-size: 26px;
 @media (min-width: 576px){
 .modal-dialog {
 max-width: 580px;
+justify-content: center;
+flex-direction: column;
 }
 }
