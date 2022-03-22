@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
   error!: string;
   finalData = <any>{};
+  isUserLoggedInError:boolean = false;
   
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
     //localStorage.removeItem("currentUser");
     const user = JSON.parse(localStorage.getItem('currentUser')!);
     console.log("user",user);
-       if(user !== null) this.router.navigate(['/dashboard']);
+       if(user !== null) this.router.navigate(['/dashboard/student-progress']);
     
     this.loginForm = this.formBuilder.group({
         email: ['', Validators.required],
@@ -65,9 +66,10 @@ export class LoginComponent implements OnInit {
               console.log(res);
               if(res){
                 console.log('User logged in successfully!');
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(['/dashboard/student-progress']);
               }else{
                 console.log("FALSEEEEE");
+                this.isUserLoggedInError = true;
               }
               
               

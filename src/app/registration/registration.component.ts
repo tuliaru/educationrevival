@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RegistrationService } from '../services/registration/registration.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 
@@ -26,6 +27,7 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
     confirmPassword: ["", [Validators.required]]
   }, { validator: this.checkPasswords });
   
+  
   checkPasswords(group: FormGroup) {
         const pass = group.controls["password"].value;
         const confirmPass = group.controls["confirmPassword"].value;
@@ -44,11 +46,15 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   finalData = <any>{};
   formObj = <any>{};
   
-  constructor(private fb: FormBuilder,public registrationService: RegistrationService) {
+  constructor( private router: Router, private fb: FormBuilder,public registrationService: RegistrationService) {
    
   }
   
   ngOnInit(){
+
+    const user = JSON.parse(localStorage.getItem('currentUser')!);
+    console.log("user",user);
+       if(user !== null) this.router.navigate(['/dashboard/student-progress']);
     
   }
 
