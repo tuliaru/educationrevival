@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/login/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm!: FormGroup;
   loading = false;
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
        if(user !== null) this.router.navigate(['/dashboard/student-progress']);
     
     this.loginForm = this.formBuilder.group({
-        email: ['', Validators.required],
+        email: ['', [Validators.required,Validators.email]],
         password: ['', Validators.required]
     });
 
@@ -65,16 +65,22 @@ export class LoginComponent implements OnInit {
             .subscribe((res:any) => {
               console.log(res);
               if(res){
+                
                 console.log('User logged in successfully!');
                 this.router.navigate(['/dashboard/student-progress']);
               }else{
-                console.log("FALSEEEEE");
+                console.log("FALSE");
                 this.isUserLoggedInError = true;
+                this.submitted = false;
               }
               
               
            });
            
+  }
+
+  ngOnDestroy() {
+    this.submitted = false;
   }
 
 }

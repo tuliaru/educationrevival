@@ -35,15 +35,17 @@
                                 <label for="" class="form-label">User credentials</label>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" formControlName="email" placeholder="Email address*" class="form-control">
-                                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                                            <div *ngIf="f.email.errors.required">Email is required</div>
+                                        <input type="email" formControlName="email" placeholder="Email address*" class="form-control" [class.is-invalid]="f.email.touched && f.email.invalid" [class.is-valid]="f.email.touched && f.email.valid">
+                                        <div *ngIf="f.email.invalid && f.email.touched">
+                                            <div *ngIf="f.email.errors?.required" class="d-block invalid-feedback">Email address is required.</div>
+                                            <div *ngIf="f.email.errors?.email" class="d-block invalid-feedback">Invalid Email address</div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input type="password" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" formControlName="password" placeholder="Password*" class="form-control">
-                                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                                            <div *ngIf="f.password.errors.required">Password is required</div>
+                                        <input type="password" [class.is-invalid]="f.password.invalid && f.password.touched" [class.is-valid]="f.password.touched && f.password.valid" formControlName="password" placeholder="Password*" class="form-control">
+                                        <div *ngIf="f.password.invalid && f.password.touched">
+                                            <div *ngIf="f.password.errors?.required" class="d-block invalid-feedback">Password is required.</div>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -52,9 +54,13 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="submit" value="Submit" class="btn btn-primary">
+                                        <input *ngIf="!submitted" type="submit" value="Submit" class="btn btn-primary">
+                                        <button *ngIf="submitted" class="btn btn-primary" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Submit
+                                          </button>
                                         <div class="form-text text-center mt-3">Forgot password? <a href="#">Reset</a></div>
-                                        <div class="form-text text-center mt-3">New user? <a href="#">Register new account</a></div>
+                                        <div class="form-text text-center mt-3">New user? <a href="#register" routerLink="/register">Register new account</a></div>
                                     </div>
                                 </div>
                             </div>

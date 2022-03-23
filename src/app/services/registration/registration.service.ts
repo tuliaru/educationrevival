@@ -13,6 +13,7 @@ export class RegistrationService {
 
 	private apiURL = "/~educationrevival/backend/index.php";
 	
+	
 	/*------------ Http Header Options ----------*/
 	httpOptions = {
 		headers: new HttpHeaders({
@@ -30,7 +31,11 @@ export class RegistrationService {
 		  catchError(this.errorHandler)
 		)
 	}
-	
+	checkEmail(reqParam: object): Observable<any> {
+		return this.httpClient.post(this.apiURL, JSON.stringify(reqParam), this.httpOptions).pipe(
+		  catchError(this.errorHandler)
+		)
+	}
 	errorHandler(error:any) {
 		let errorMessage = '';
 		if(error.error instanceof ErrorEvent) {

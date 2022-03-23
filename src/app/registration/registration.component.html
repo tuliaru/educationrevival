@@ -123,12 +123,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12">
-                                        <input formControlName="email" type="email" placeholder="Email address*" class="form-control" id="id_email"  [class.is-invalid]="email.touched && email.invalid" [class.is-valid]="email.touched && email.valid">
+                                        <input formControlName="email" type="email" placeholder="Email address*" class="form-control" id="id_email"  [class.is-invalid]="email.touched && email.invalid" [class.is-valid]="email.touched && email.valid && !isExists" (blur)="checkEmailExistance()">
                                         <div *ngIf="email.invalid && email.touched">
                                             <div *ngIf="email.errors?.required" class="d-block invalid-feedback">Please
                                                 provide a email.</div>
                                             <div *ngIf="email.errors?.email" class="d-block invalid-feedback">Email address
                                                 is not valid</div>
+                                        </div>
+                                        <div *ngIf="isExists"  class="d-block invalid-feedback">
+                                                Email already exists. Please try another.
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isLoading" class="text-center">
+                                        <div class="spinner-border spinner-border-sm" role="status">
+                                          <span class="visually-hidden">Loading...</span>
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +195,8 @@
                             <div class="form-group pt-sm-4">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="submit" value="Generate New User" class="btn btn-primary" [disabled]="registerForm.invalid" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                                        <div class="form-text text-center mt-3">Already have an account ? <a href="/">Login Here</a></div>
+                                        <input type="submit" value="Generate New User" class="btn btn-primary" [disabled]="registerForm.invalid || isExists" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                        <div class="form-text text-center mt-3">Already have an account ? <a href="#login" routerLink="/login">Login Here</a></div>
                                     </div>
                                 </div>
                             </div>
