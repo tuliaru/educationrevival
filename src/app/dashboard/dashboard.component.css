@@ -203,8 +203,13 @@ width: 100%;
 border: none;
 margin-bottom: 20px;
 }
-#timeModal .modal-body {
+#timeModal .modal-body, #assesmentqtypeOneModal .modal-body {
 padding: 50px;
+}
+.btn-close{
+height: auto;
+opacity: 1;
+width: auto;
 }
 #timeModal h2{
 text-align: center;
@@ -238,6 +243,69 @@ line-height: 22px;
 #timeModal .btn.btn-primary {
 display: inline-block;
 margin:40px 5px 20px 5px;
+}
+.modal-header{
+flex-direction: column;
+border: none;
+position: relative;
+}
+#assesmentqtypeOneModal h3{
+font-size: 41px;
+line-height: 45px;
+color: #828282;
+font-weight: 300;
+margin-bottom: 35px;
+margin-top: 20px;
+}
+.question-box h4 {
+text-align: center;
+font-size: 21px;
+font-weight: 700;
+margin-bottom: 28px;
+}
+.question-box .form-check {
+width: 200px;
+margin: 0 auto 20px auto;
+}
+label.form-check-label {
+font-size: 18px;
+vertical-align: middle;
+margin-top: 1px;
+margin-left: 10px;
+}
+.form-check-input {
+background: #C8C8C8;
+border: none;
+width: 20px;
+height: 20px;
+vertical-align: top;
+}
+.modal .btn-sm {
+min-width: 120px;
+}
+.modal .hdr-rgt {
+position: absolute;
+right: -40px;
+top: 20px;
+}
+.modal .hdr-rgt span.time {
+font-size: 29px;
+display: block;
+font-weight: 700;
+color: #39F;
+text-align: center;
+}
+.modal .hdr-rgt em {
+font-style: normal;
+display: block;
+font-size: 14px;
+color: #4F4F4F;
+line-height: 1;
+font-weight: 400;
+margin-top: 7px;
+}
+.btn-close:hover{
+opacity: 1;
 }
 @media (min-width: 1200px) {
   

@@ -42,12 +42,59 @@
             </div>
             <div class="text-center">
                 <button #timeModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Stop</button>
-                <a #timeModal type="button" class="btn btn-primary" href="#">Ok</a>
+                <a #timeModal type="button" class="btn btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#assesmentqtypeOneModal">Ok</a>
             </div>
 		 </div>
 	</div>
 	</div>
 	</div>
+
+<!--Assesment modal-->
+<div class="modal fade" id="assesmentqtypeOneModal" tabindex="-1" aria-labelledby="assesmentqtypeOneModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2>Assessment Questions</h2>
+                <h3>Question 1 of 10</h3>
+                <div class="hdr-rgt">
+                    <span class="time">60<em>sec.<br>Remaining</em></span>
+                </div>
+              </div>
+			<div class="question-box">
+                <h4>Bob’s favorite color</h4>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                    <label class="form-check-label" for="flexRadioDefault1">Blue</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                    <label class="form-check-label" for="flexRadioDefault2">Red</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
+                    <label class="form-check-label" for="flexRadioDefault3">Yellow</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4">
+                    <label class="form-check-label" for="flexRadioDefault4">Orange</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">Red</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                    <label class="form-check-label" for="flexCheckChecked">Blue</label>
+                  </div>
+            </div>
+            <div class="mt-5 center">
+                <button #assesmentqtypeOneModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-primary btn-sm btn-close">Submit</button>
+            </div>
+		 </div>
+	</div>
+    </div>
+</div>
 
 <div class="body-slide dashboard-container dashboard-theme-gray body-tabs-shadow fixed-sidebar fixed-header" id="wrapper" [ngClass]="status ? 'hide' : 'show'">
     <header class="dashboard-header fixed-top">
