@@ -45,7 +45,9 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
   passwordFormData =  <any>{};
   finalData = <any>{};
   formObj = <any>{};
-  
+  isLoading: Boolean = false;
+  isExists: boolean = false;
+  reqBodyEmailExistance: object = {};
   constructor( private router: Router, private fb: FormBuilder,public registrationService: RegistrationService) {
    
   }
@@ -113,6 +115,24 @@ export class RegistrationComponent implements OnInit,AfterViewInit, OnDestroy {
 
   onSubmit(){
         this.formData = this.registerForm.value;
+    
+  }
+  checkEmailExistance() {
+    this.isLoading = true;
+    this.reqBodyEmailExistance = {function:"getStudentIdForEmail",email: this.registerForm.controls['email'].value}
+      this.registrationService.checkEmail(this.reqBodyEmailExistance).subscribe( (res:any) => {
+        if( res.studentId != 0 )
+        {
+          this.isLoading = false;
+          this.isExists = true;
+        }
+        else
+        {
+          this.isLoading = false;
+          this.isExists = false;
+        }
+    });
+       
     
   }
   newPasswordSubmit()
