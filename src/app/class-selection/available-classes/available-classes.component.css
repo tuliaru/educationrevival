@@ -1,0 +1,113 @@
+.dashboard-inner-head{
+    margin-bottom: 50px;
+    }
+    .dashboard-inner-head .btn-primary{
+    margin: 0;
+    min-width: 150px;
+    line-height: 22px;
+    }
+    .dashboard-inner-head h2{
+    margin: 0;
+    }
+    h2{
+    font-size: 33px;
+    }
+    .dashboard-class-box {
+    background: #fff;
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.13);
+    -webkit-transition: box-shadow .25s ease-out;
+    -moz-transition: box-shadow .25s ease-out;
+    -o-transition: box-shadow .25s ease-out;
+    transition: box-shadow .25s ease-out;
+    }
+    .dashboard-class-box:hover {
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.30);
+    }
+    .dashboard-class-box h3.class-name {
+    font-size: 21px;
+    margin: 0;
+    }
+    .dashboard-class-box .btn-dark.btn-sm {
+    font-weight: 600;
+    padding: 5px 18px;
+    line-height: 18px;
+    border-radius: 6px;
+    background-color: #000;
+    }
+    .dashboard-class-box .btn-dark.btn-sm:hover{
+    background-color: #0875F7;
+    border-color: #0875F7;
+    }
+    .dashboard-class-box h5.progress-txt {
+    font-size: 18px;
+    color: #4f4f4f;
+    font-weight: 400;
+    margin: 0;
+    }
+    .progress {
+    height: 13px;
+    overflow: hidden;
+    background-color: #E0E0E0;
+    border-radius: 30px;
+    width: 100%;
+    margin: 0 15px;
+    }
+    .dashboard-class-box h6.progress-limit {
+    font-size: 18px;
+    color: #0875F7;
+    font-weight: 400;
+    margin: 0;
+    }
+    .dashboard-class-box .score-label {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: right;
+    }
+    @media (max-width: 1380px){
+    .dashboard-class-box  .score-label {
+    font-size: 12px;
+    }
+    .dashboard-class-box  .btn-dark.btn-sm{
+    padding: 5px 10px;
+    }
+    }
+    @media (max-width: 1000px){
+    .add-padding{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    }
+    .dashboard-class-box .text-center {
+    text-align: left !important;
+    }
+    .dashboard-class-box .row .col-md-6 {
+    background: #efefef;
+    padding: 10px;
+    margin: 5px;
+    width: 48%;
+    min-height: 60px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .progress-outer{
+    width: 100%;
+    }
+    
+    }
+    @media (max-width: 600px){
+    .dashboard-class-box .row .col-md-6 {
+    margin: 5px auto;
+    width: 100%;
+    min-height: 60px;
+    }
+    .dashboard-header .col-sm-4,
+    .dashboard-header .col-sm-8{
+    width: 50%;
+    }
+    .dashboard-inner-head h2{
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    }

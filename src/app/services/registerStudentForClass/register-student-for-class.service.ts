@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { RegisterStudentForClass } from './register-student-for-class';
+import { RegisterStudentForClass, IsStudentRegisteredForClass } from './register-student-for-class';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,14 @@ export class RegisterStudentForClassService {
 	create(registerStudentForClass:RegisterStudentForClass): Observable<any> {
   
 		return this.httpClient.post(this.apiURL , JSON.stringify(registerStudentForClass), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	isStudentRegisteredForClass(isStudentRegisteredForClass: IsStudentRegisteredForClass): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(isStudentRegisteredForClass), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)

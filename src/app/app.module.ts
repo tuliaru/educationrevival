@@ -16,6 +16,7 @@ import { ClassSelectionComponent } from './class-selection/class-selection.compo
 
 import { AuthGuard } from './services/login/auth.guard';
 import { AuthService } from './services/login/auth.service';
+import { AvailableClassesComponent } from './class-selection/available-classes/available-classes.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthService } from './services/login/auth.service';
     DashboardComponent,
     StudentProgressComponent,
     CompletedClassesComponent,
-    ClassSelectionComponent
+    ClassSelectionComponent,
+    AvailableClassesComponent
   ],
   imports: [
     BrowserModule,

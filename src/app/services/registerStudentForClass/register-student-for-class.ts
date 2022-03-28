@@ -3,3 +3,9 @@ export interface RegisterStudentForClass {
 	studentId: number;
 	courseId: number;
 }
+
+export interface IsStudentRegisteredForClass {
+    function: string;
+	studentId: number;
+	courseId: number;
+}
