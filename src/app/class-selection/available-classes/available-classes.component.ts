@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, Input, ViewChild, OnInit, AfterViewInit, ElementRef, Renderer2 } from '@angular/core';
 import { RegisterStudentForClassService } from '../../services/registerStudentForClass/register-student-for-class.service';
 
@@ -19,8 +20,9 @@ export class AvailableClassesComponent implements OnInit, AfterViewInit {
   @ViewChild("register") register?: ElementRef;
   @ViewChild("divbtn") divbtn?: ElementRef;
   @ViewChild("divcourse") divcourse?: ElementRef;
+  @ViewChild("divwrapper") divwrapper?: ElementRef;
 
-  constructor(private renderer: Renderer2, private registerStudentForClass: RegisterStudentForClassService) { }
+  constructor(private renderer: Renderer2, private registerStudentForClass: RegisterStudentForClassService,private router: Router) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -73,10 +75,18 @@ export class AvailableClassesComponent implements OnInit, AfterViewInit {
           this.renderer.addClass(elem,"btn-dark");
           this.renderer.addClass(elem,"btn-sm");
           this.renderer.listen(elem,'click',event => {
+            const loadingElem = this.renderer.createElement('div');
+            const loadingText = this.renderer.createText('Please wait...while you are being redirect to progress page');
+            this.renderer.appendChild(loadingElem,loadingText);
+            this.renderer.addClass(loadingElem,'text-center');
+            this.renderer.addClass(loadingElem,'pt-2');
+            this.renderer.appendChild(this.divwrapper?.nativeElement,loadingElem);
+
             this.registerStudentForClass.create(this.reqPayloadRegisterStudentForClass).subscribe((res:any) => {
               console.log('Student successfully registered for class!');
+              this.router.navigate(['/dashboard/student-progress']);
               
-           })
+           });
             this.renderer.removeClass(elem,"btn-dark");
             this.renderer.addClass(elem,"btn-success");
             this.renderer.setStyle(elem,'cursor','none');

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { RegisterStudentForClassService } from '../services/registerStudentForClass/register-student-for-class.service';
-import { AvailableClassesComponent } from './available-classes/available-classes.component'
+
 @Component({
   selector: 'app-class-selection',
   templateUrl: './class-selection.component.html',
@@ -8,38 +8,24 @@ import { AvailableClassesComponent } from './available-classes/available-classes
 })
 export class ClassSelectionComponent implements OnInit {
 
-  finalData = <any>{};
+  reqPayload = <any>{};
   
-  allAvailableCourses:{courseId: number,courseName: string}[] = [];
+  allAvailableCourses:{courseId: number,courseName: string, numberOfGradedModules: number}[] = [];
   
 
-  constructor(private registerStudentForClassService:RegisterStudentForClassService) { 
-    console.log("Constructor...");
-    this.allAvailableCourses = [{courseId:1,courseName:'Algebra'},{courseId:2,courseName:'Trigonmetry'}];
-  }
-
+  constructor(private registerStudentForClassService:RegisterStudentForClassService) {}
 
   ngOnInit(){
-    console.log("CLASS");
-    
+    this.reqPayload = {
+      function: "getAllClasses"
+    };
+    this.registerStudentForClassService.getAllAvailableClasses(this.reqPayload).subscribe((res:any) => {
+      console.log(res)   
+      res.forEach((item:any) => {
+            this.allAvailableCourses.push(item);
+         });
+    });
   }
-
-  registerStudentForClass(studentId: number, courseId: number){
-
-    this.finalData = {
-			function: "registerStudentForClass",
-			studentId: studentId,
-			courseId: courseId
-		}
-
-    console.log(this.finalData);
-		
-		this.registerStudentForClassService.create(this.finalData).subscribe((res:any) => {
-			 console.log('Student successfully registered for class!');
-			 
-		})
-
-  }
-
+  
 
 }

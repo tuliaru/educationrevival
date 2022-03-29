@@ -3,7 +3,7 @@
         <div class="col-lg-12 p-lg-5 add-padding">
             <div class="dashboard-inner-head d-sm-flex justify-content-between align-items-center">
                 <h2>Available Classes</h2>
-                <a href="#" class="btn btn-primary">Add Class</a>
+                <!--<a routerLink="/dashboard/class-selection" class="btn btn-primary">Add Class</a>-->
             </div>
             <ng-container *ngFor="let allclasses of allAvailableCourses">
                 <app-available-classes [courseobj]="allclasses"></app-available-classes>

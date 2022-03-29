@@ -9,3 +9,7 @@ export interface IsStudentRegisteredForClass {
 	studentId: number;
 	courseId: number;
 }
+
+export interface AllAvailabaleClasses {
+	function: string
+}
