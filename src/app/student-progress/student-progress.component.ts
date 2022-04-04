@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RegisterStudentForClassService } from '../services/registerStudentForClass/register-student-for-class.service';
 
 @Component({
   selector: 'app-student-progress',
@@ -7,9 +8,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentProgressComponent implements OnInit {
 
-  constructor() { }
+  reqPayload = <any>{};
+  listOfCurrentClasses: {courseId: number,courseName: string, numberOfGradedModules: number}[] = [];
 
-  ngOnInit(): void {
+  constructor(private registerStudentForClassService:RegisterStudentForClassService) { }
+
+  ngOnInit(){
+
+    const user = JSON.parse(localStorage.getItem('currentUser')!);
+
+    this.reqPayload = {
+      function: "getListOfCurrentClasses",
+      studentId: user.userId
+    };
+    this.registerStudentForClassService.getListOfCurrentClasses(this.reqPayload).subscribe((res:any) => {
+      console.log("TEST=",res)   
+      res.forEach((item:any) => {
+            this.listOfCurrentClasses.push(item);
+         });
+    });
+
   }
 
 }

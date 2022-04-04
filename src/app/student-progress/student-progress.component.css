@@ -66,6 +66,8 @@ font-weight: 400;
 text-align: right;
 }
 
+
+
 @media (max-width: 1380px){
 .dashboard-class-box  .score-label {
 font-size: 12px;

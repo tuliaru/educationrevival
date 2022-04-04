@@ -17,6 +17,13 @@ import { ClassSelectionComponent } from './class-selection/class-selection.compo
 import { AuthGuard } from './services/login/auth.guard';
 import { AuthService } from './services/login/auth.service';
 import { AvailableClassesComponent } from './class-selection/available-classes/available-classes.component';
+import { StudentProgressClassComponent } from './student-progress/student-progress-class/student-progress-class.component';
+import { ProgressBarComponent } from './student-progress/student-progress-class/progress-bar/progress-bar.component';
+
+/*SPINNER*/
+import { NgxSpinnerModule } from "ngx-spinner";
+import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {environment} from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -29,13 +36,18 @@ import { AvailableClassesComponent } from './class-selection/available-classes/a
     StudentProgressComponent,
     CompletedClassesComponent,
     ClassSelectionComponent,
-    AvailableClassesComponent
+    AvailableClassesComponent,
+    StudentProgressClassComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule,
+    environment.production ? BrowserAnimationsModule : NoopAnimationsModule,
     AppRoutingModule,
 	HttpClientModule,
-	ReactiveFormsModule
+	ReactiveFormsModule,
+  NgxSpinnerModule
+  
   ],
   providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]

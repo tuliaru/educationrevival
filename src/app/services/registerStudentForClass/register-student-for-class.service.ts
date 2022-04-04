@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { RegisterStudentForClass, IsStudentRegisteredForClass, AllAvailabaleClasses } from './register-student-for-class';
+import { RegisterStudentForClass, IsStudentRegisteredForClass, AllAvailabaleClasses, ListOfCurrentClasses, ActualAndTotalPossibleScores, CompletedAndTotalModules } from './register-student-for-class';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +39,30 @@ export class RegisterStudentForClassService {
 
 	getAllAvailableClasses(allClasses: AllAvailabaleClasses): Observable<any> {
 		return this.httpClient.post(this.apiURL , JSON.stringify(allClasses), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getListOfCurrentClasses(listOfCurrentClasses: ListOfCurrentClasses): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(listOfCurrentClasses), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getActualAndTotalPossibleScores(actualAndTotalPossibleScores: ActualAndTotalPossibleScores): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(actualAndTotalPossibleScores), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getCompletedAndTotalModules(completedAndTotalModules: CompletedAndTotalModules): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(completedAndTotalModules), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)

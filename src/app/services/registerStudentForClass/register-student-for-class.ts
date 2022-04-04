@@ -13,3 +13,20 @@ export interface IsStudentRegisteredForClass {
 export interface AllAvailabaleClasses {
 	function: string
 }
+
+export interface ListOfCurrentClasses {
+	function: string;
+	studentId: number;
+}
+
+export interface ActualAndTotalPossibleScores {
+	function: string;
+	studentId: number;
+	courseId: number;
+}
+
+export interface CompletedAndTotalModules {
+	function: string;
+	studentId: number;
+	courseId: number;
+}

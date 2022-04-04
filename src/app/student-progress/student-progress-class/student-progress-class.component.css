@@ -1,0 +1,283 @@
+.dashboard-inner-head{
+    margin-bottom: 50px;
+    }
+    .dashboard-inner-head .btn-primary{
+    margin: 0;
+    min-width: 150px;
+    line-height: 22px;
+    }
+    .dashboard-inner-head h2{
+    margin: 0;
+    }
+    h2{
+    font-size: 33px;
+    }
+    .dashboard-class-box {
+    background: #fff;
+    padding: 22px;
+    margin-bottom: 22px;
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.13);
+    -webkit-transition: box-shadow .25s ease-out;
+    -moz-transition: box-shadow .25s ease-out;
+    -o-transition: box-shadow .25s ease-out;
+    transition: box-shadow .25s ease-out;
+    }
+    .dashboard-class-box:hover {
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.30);
+    }
+    .dashboard-class-box h3.class-name {
+    font-size: 21px;
+    margin: 0;
+    }
+    .dashboard-class-box .btn-dark.btn-sm {
+    font-weight: 600;
+    padding: 5px 18px;
+    line-height: 18px;
+    border-radius: 6px;
+    background-color: #000;
+    }
+    .dashboard-class-box .btn-dark.btn-sm:hover{
+    background-color: #0875F7;
+    border-color: #0875F7;
+    }
+    .dashboard-class-box h5.progress-txt {
+    font-size: 18px;
+    color: #4f4f4f;
+    font-weight: 400;
+    margin: 0;
+    }
+    .progress {
+    height: 13px;
+    overflow: hidden;
+    background-color: #E0E0E0;
+    border-radius: 30px;
+    width: 100%;
+    margin: 0 15px;
+    }
+    .dashboard-class-box h6.progress-limit {
+    font-size: 18px;
+    color: #0875F7;
+    font-weight: 400;
+    margin: 0;
+    }
+    .dashboard-class-box .score-label {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: right;
+    }
+    
+    .dashboard-class-box h3.class-name{
+    font-size: 21px;
+    margin: 0;
+}
+
+    .modal-content{
+        border-radius: 50px;
+        }
+        #videosModal .btn.btn-danger.btn-close,
+        #timeModal .btn.btn-danger.btn-close {
+        width:100px;
+        height: auto;
+        background: #F4585B;
+        color: #fff;
+        opacity: 1;
+        margin: 60px auto;
+        display: block;
+        padding: 6px 20px 8px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 18px;
+        }
+        #videosModal .btn.btn-danger.btn-close:hover,
+        #timeModal .btn.btn-danger.btn-close:hover {
+        color: #fff;
+        background-color: #bb2d3b;
+        border-color: #b02a37;
+        }
+        #timeModal .btn.btn-primary {
+        width: 140px;
+        height: auto;
+        margin: 60px 5px;
+        display: block;
+        padding: 6px 20px 8px 20px;
+        border-radius: 30px;
+        font-weight: 600;
+        font-size: 18px;
+        min-width: 140px;
+        }
+        .modal-open {
+        padding: 0 !important;
+        }
+        .modal-backdrop{
+        z-index: 999999;
+        }
+        .modal{
+        z-index: 9999999;
+        }
+        #timeModal .modal-header {
+        width: 100%;
+        border: none;
+        margin-bottom: 20px;
+        }
+        #timeModal .modal-body, #assesmentqtypeOneModal .modal-body {
+        padding: 50px;
+        }
+        .btn-close{
+        height: auto;
+        opacity: 1;
+        width: auto;
+        }
+        #timeModal h2{
+        text-align: center;
+        width: 100%;
+        }
+        #timeModal .time-count {
+        text-align: center;
+        margin-bottom: 30px;
+        }
+        #timeModal .time-count span {
+        font-size: 114px;
+        line-height: 114px;
+        display: inline-block;
+        font-weight: 800;
+        color: #39F;
+        }
+        #timeModal .time-count em {
+        color: #4F4F4F;
+        font-size: 18px;
+        font-style: normal;
+        display: block;
+        font-weight: 400;
+        line-height: 22px;
+        }
+        #timeModal .time-txt {
+        font-size: 18px;
+        text-align: center;
+        line-height: 22px;
+        }
+        #timeModal .btn.btn-danger.btn-close,
+        #timeModal .btn.btn-primary {
+        display: inline-block;
+        margin:40px 5px 20px 5px;
+        }
+        .modal-header{
+        flex-direction: column;
+        border: none;
+        position: relative;
+        }
+        #assesmentqtypeOneModal h3{
+        font-size: 41px;
+        line-height: 45px;
+        color: #828282;
+        font-weight: 300;
+        margin-bottom: 35px;
+        margin-top: 20px;
+        }
+        .question-box h4 {
+        text-align: center;
+        font-size: 21px;
+        font-weight: 700;
+        margin-bottom: 28px;
+        }
+        .question-box .form-check {
+        width: 200px;
+        margin: 0 auto 20px auto;
+        }
+        label.form-check-label {
+        font-size: 18px;
+        vertical-align: middle;
+        margin-top: 1px;
+        margin-left: 10px;
+        }
+        .form-check-input {
+        background: #C8C8C8;
+        border: none;
+        width: 20px;
+        height: 20px;
+        vertical-align: top;
+        }
+        .modal .btn-sm {
+        min-width: 120px;
+        }
+        .modal .hdr-rgt {
+        position: absolute;
+        right: -40px;
+        top: 20px;
+        }
+        .modal .hdr-rgt span.time {
+        font-size: 29px;
+        display: block;
+        font-weight: 700;
+        color: #39F;
+        text-align: center;
+        }
+        .modal .hdr-rgt em {
+        font-style: normal;
+        display: block;
+        font-size: 14px;
+        color: #4F4F4F;
+        line-height: 1;
+        font-weight: 400;
+        margin-top: 7px;
+        }
+        .btn-close:hover{
+        opacity: 1;
+        }
+    
+        .modal-backdrop {
+            z-index: 999999;
+        }
+    
+        .modal {
+            z-index: 9999999;
+        }
+
+    @media (max-width: 1380px){
+    .dashboard-class-box  .score-label {
+    font-size: 12px;
+    }
+    .dashboard-class-box  .btn-dark.btn-sm{
+    padding: 5px 10px;
+    }
+    }
+    @media (max-width: 1000px){
+    .add-padding{
+    padding-top: 40px;
+    padding-bottom: 40px;
+    }
+    .dashboard-class-box .text-center {
+    text-align: left !important;
+    }
+    .dashboard-class-box .row .col-md-6 {
+    background: #efefef;
+    padding: 10px;
+    margin: 5px;
+    width: 48%;
+    min-height: 60px;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    }
+    .progress-outer{
+    width: 100%;
+    }
+    
+    }
+    @media (max-width: 600px){
+    .dashboard-class-box .row .col-md-6 {
+    margin: 5px auto;
+    width: 100%;
+    min-height: 60px;
+    }
+    .dashboard-header .col-sm-4,
+    .dashboard-header .col-sm-8{
+    width: 50%;
+    }
+    .dashboard-inner-head h2{
+    margin-bottom: 20px;
+    text-align: center;
+    }
+    }
+    
+    
+    
