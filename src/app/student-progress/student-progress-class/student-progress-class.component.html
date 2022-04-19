@@ -1,38 +1,11 @@
 
-<!--video modal-->
-<div #videoModalTempRef class="modal fade" id="videosModal" tabindex="-1" aria-labelledby="videosModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-            <div class="modal-header">
-                <h2>Algebra1</h2>
-              </div>
-			<div class="video-box">
-                <div class="ratio ratio-16x9">
-                    <!--<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uTxnECbI0-U?start=22" allowscriptaccess="always" allow="autoplay"></iframe>-->
-
-                    <video class="embed-responsive-item"  controls>
-                        <source src="http://209.59.175.99/~educationrevival/videos/AlgebraIntro1.mp4" >
-                      Your browser does not support the video tag.
-                      </video>
-
-                </div>
-            </div>
-            <div class="center">
-                <button #videosModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Close</button>
-            </div>
-		 </div>
-	</div>
-	</div>
-	</div>
-
 <div class="dashboard-class-box">
     <div class="row align-items-center">
         
         <div class="col-lg-3 col-md-6 col-sm-12" #divCourseName></div>
 
         <div class="col-lg-2 col-md-6 col-sm-12 text-center">
-            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" data-bs-target="#videosModal" >{{courseStarted ? 'Started':'Not Started'}}</a>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" (click)="showVideo()"  data-bs-target="#videosModal" >{{courseStarted ? 'Started':'Not Started'}}</a>
         </div>
 
         <div class="col-lg-5 col-md-6 col-sm-12">
@@ -51,9 +24,9 @@
 			</div>
 		</div>
         -->
-        <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+        <!--<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
             <p style="color: rgb(88, 8, 8)">Please Wait. </p>  
         </ngx-spinner> 
-        
+        -->
     </div>
 </div>

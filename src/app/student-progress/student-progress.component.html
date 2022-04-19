@@ -6,8 +6,32 @@
                 <a routerLink="/dashboard/class-selection" class="btn btn-primary">Add Class</a>
             </div>
 
+            <!--video modal-->
+<div class="modal fade"  id="videosModal" tabindex="-1" aria-labelledby="videosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2>Algebra1</h2>
+            </div>
+			<div class="video-box">
+                <div class="ratio ratio-16x9">
+                   <video #videoTag  class="embed-responsive-item"  controls>
+                        <!--<source src="http://209.59.175.99/~educationrevival/videos/AlgebraIntro1.mp4" type="video/mp4" >-->
+                   </video>
+
+                </div>
+            </div>
+            <div class="center">
+                <button #videosModal type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Close</button>
+            </div>
+		 </div>
+	</div>
+	</div>
+	</div>
+
             <ng-container *ngFor="let allclasses of listOfCurrentClasses">
-                <app-student-progress-class [courseobj]="allclasses"></app-student-progress-class>
+                <app-student-progress-class (onVideoClicked)="doSomething1($event)" (onGetSubjectName)="doSomething2($event)" [courseobj]="allclasses"></app-student-progress-class>
             </ng-container>
 
             <!--

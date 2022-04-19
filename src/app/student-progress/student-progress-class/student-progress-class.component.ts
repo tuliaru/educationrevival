@@ -1,5 +1,4 @@
-import { Component, Input, ViewChild, OnInit, ElementRef, Renderer2, AfterViewInit, AfterContentInit  } from '@angular/core';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { Component, Input, ViewChild, OnInit, ElementRef, Renderer2, AfterViewInit, AfterContentInit, EventEmitter, Output  } from '@angular/core';
 import { RegisterStudentForClassService } from 'src/app/services/registerStudentForClass/register-student-for-class.service';
 
 @Component({
@@ -13,7 +12,10 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
   isLoading: boolean = false;
   reqPayload  = <any>{};
   reqPayload1  = <any>{};
+  reqPayload2  = <any>{};
+  reqPayload3  = <any>{};
   courseid:number | undefined;
+  SegmentId:number | undefined
   TotalScorePossible:number = 0;
   TotalScore:number = 0;
   LastCompletedModule:number = 0;
@@ -21,27 +23,30 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
   coursename: string = "";
   courseStarted:boolean = false;
   getScoreValue: string | undefined;
+  VideoAddress: string = "";
   getProgressBarValue: string | undefined;
   getProgressBarStyleWidth: number | undefined;
   getProgressBarAreaValueNow: number | undefined;
-
-  displayStyle = "none";
-
+  getVideoSourceTag: string | undefined;
+  
   @ViewChild("divCourseName") divCourseName?: ElementRef;
   @ViewChild("divScoreValue") divScoreValue?: ElementRef;
   @ViewChild("videoModalTempRef") videoModalTempRef?: ElementRef;
+  @ViewChild("videoTag") videoTag?: ElementRef;
+  
+  @Output() onVideoClicked = new EventEmitter<any>();
+  @Output() onGetSubjectName = new EventEmitter<any>();
 
   
   constructor(private renderer: Renderer2, 
               private registerStudentForClassService:RegisterStudentForClassService,
-              private SpinnerService: NgxSpinnerService,
               private elem:ElementRef
               ){
     //this.isLoading = true;
   }
 
   ngOnInit(){
-    this.SpinnerService.show(); 
+   
     const user = JSON.parse(localStorage.getItem('currentUser')!);
     this.courseid = this.courseobj.courseId;
     
@@ -74,6 +79,32 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
       this.renderer.setProperty(this.divScoreValue?.nativeElement,'innerHTML', getActualAndTotalPossibleScoresValueHTML);
     });
 
+    this.reqPayload3 = {
+      function: "getNextSegment",
+      studentId: user.userId,
+      courseId: this.courseid
+    };
+    
+    this.registerStudentForClassService.getNextSegment(this.reqPayload3).subscribe((res:any) => {
+      
+      this.reqPayload2 = {
+        function: "getVideo",
+        segmentId: res.segmentId,
+        courseId: this.courseid
+      };
+     
+      this.registerStudentForClassService.getVideo(this.reqPayload2).subscribe((res:any) => {
+        console.log(res);
+        this.VideoAddress = res.videoAddress
+        
+        /*
+        this.VideoAddress =  "http://209.59.175.99/~educationrevival/videos/"+res.videoAddress;
+        this.getVideoSourceTag = '<source src="'+this.VideoAddress+'" type="video/mp4" >';
+        this.renderer.setProperty(this.videoTag?.nativeElement,'innerHTML', this.getVideoSourceTag);
+        */
+      });
+   });
+
   }
 
   ngAfterViewInit(){
@@ -82,22 +113,17 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
     this.courseStarted = this.courseobj.started;
     const divCourseNameH3TagHTML = '<h3 class="class-name">'+this.coursename+'</h3>'
     this.renderer.setProperty(this.divCourseName?.nativeElement,'innerHTML', divCourseNameH3TagHTML);
-    this.SpinnerService.hide();
-
-    
+  
   }
 
   ngAfterContentInit(){
     //this.isLoading = false;
-    
   }
 
-  openModal(){
-    //this.elem.nativeElement.querySelector('#videosModal').modal('show');
-
-    this.displayStyle = "block";
-
-
+  showVideo(){
+    //console.log(this.VideoAddress);
+    this.onVideoClicked.emit(this.VideoAddress);
+    this.onGetSubjectName.emit(this.courseobj.courseName);
+   
   }
-
 }

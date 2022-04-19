@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { RegisterStudentForClass, IsStudentRegisteredForClass, AllAvailabaleClasses, ListOfCurrentClasses, ActualAndTotalPossibleScores, CompletedAndTotalModules } from './register-student-for-class';
+import { RegisterStudentForClass, IsStudentRegisteredForClass, AllAvailabaleClasses, ListOfCurrentClasses, ActualAndTotalPossibleScores, CompletedAndTotalModules, Video, NextSegment } from './register-student-for-class';
 
 @Injectable({
   providedIn: 'root'
@@ -63,6 +63,22 @@ export class RegisterStudentForClassService {
 
 	getCompletedAndTotalModules(completedAndTotalModules: CompletedAndTotalModules): Observable<any> {
 		return this.httpClient.post(this.apiURL , JSON.stringify(completedAndTotalModules), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getVideo(video: Video): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(video), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getNextSegment(nextSegment: NextSegment): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(nextSegment), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)

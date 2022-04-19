@@ -27,10 +27,10 @@ position: relative;
 flex: 1;
 flex-direction: column;
 display: flex;
-z-index: 12;
+/*z-index: 12;*/
 }
 .fixed-sidebar .dashboard-main .dashboard-main-outer{
-z-index: 9;
+/*z-index: 9;*/
 padding-left: 317px;
 }
 .dashboard-sidebar {

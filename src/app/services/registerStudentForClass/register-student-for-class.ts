@@ -30,3 +30,15 @@ export interface CompletedAndTotalModules {
 	studentId: number;
 	courseId: number;
 }
+
+export interface Video {
+	function: string;
+	segmentId: number;
+	courseId: number;
+}
+
+export interface NextSegment {
+	function: string;
+	studentId: number;
+	courseId: number;
+}

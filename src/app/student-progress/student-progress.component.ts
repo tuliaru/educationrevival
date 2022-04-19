@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { RegisterStudentForClassService } from '../services/registerStudentForClass/register-student-for-class.service';
 
 @Component({
@@ -8,10 +8,15 @@ import { RegisterStudentForClassService } from '../services/registerStudentForCl
 })
 export class StudentProgressComponent implements OnInit {
 
+  VideoAddress: string = "";
+  getVideoSourceTag: string | undefined;
   reqPayload = <any>{};
   listOfCurrentClasses: {courseId: number,courseName: string, numberOfGradedModules: number}[] = [];
-
-  constructor(private registerStudentForClassService:RegisterStudentForClassService) { }
+  @ViewChild("videoTag") videoTag?: ElementRef;
+  
+  constructor(private renderer: Renderer2, 
+              private registerStudentForClassService:RegisterStudentForClassService, 
+              private elem:ElementRef) { }
 
   ngOnInit(){
 
@@ -28,6 +33,18 @@ export class StudentProgressComponent implements OnInit {
          });
     });
 
+  }
+
+  doSomething1(videoAddress: any):void {
+    
+        this.VideoAddress =  "http://209.59.175.99/~educationrevival/videos/"+videoAddress;
+        this.getVideoSourceTag = '<source src="'+this.VideoAddress+'" type="video/mp4" >';
+        this.renderer.setProperty(this.videoTag?.nativeElement,'innerHTML', this.getVideoSourceTag);
+        this.videoTag?.nativeElement.load();
+  }
+
+  doSomething2(courseName: any):void {
+      this.elem.nativeElement.querySelector('#videosModal .modal-header h2').innerHTML = courseName;
   }
 
 }
