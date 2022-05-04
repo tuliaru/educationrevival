@@ -1,7 +1,17 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { RegisterStudentForClass, IsStudentRegisteredForClass, AllAvailabaleClasses, ListOfCurrentClasses, ActualAndTotalPossibleScores, CompletedAndTotalModules, Video, NextSegment } from './register-student-for-class';
+import { RegisterStudentForClass, 
+			IsStudentRegisteredForClass, 
+			AllAvailabaleClasses, 
+			ListOfCurrentClasses, 
+			ActualAndTotalPossibleScores, 
+			CompletedAndTotalModules, 
+			Video, 
+			NextSegment,
+			IsAssessmentGiven,
+			SegmentAssessment
+		} from './register-student-for-class';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +89,32 @@ export class RegisterStudentForClassService {
 
 	getNextSegment(nextSegment: NextSegment): Observable<any> {
 		return this.httpClient.post(this.apiURL , JSON.stringify(nextSegment), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	/*
+	getSegmentMessage(segmentMessage: SegmentMessage): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(segmentMessage), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+	*/
+
+	isAssessmentGiven(isAssessmentGiven: IsAssessmentGiven): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(isAssessmentGiven), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	getSegmentAssessment(segmentAssessment: SegmentAssessment): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(segmentAssessment), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)

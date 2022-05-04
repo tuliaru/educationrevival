@@ -42,3 +42,24 @@ export interface NextSegment {
 	studentId: number;
 	courseId: number;
 }
+
+/*
+export interface SegmentMessage {
+	function: string;
+	segmentId: number;
+	courseId: number;
+}
+*/
+
+export interface IsAssessmentGiven {
+	function: string;
+	studentId: number;
+	segmentId: number;
+	courseId: number;
+}
+
+export interface SegmentAssessment {
+	function: string;
+	segmentId: number;
+	courseId: number;
+}

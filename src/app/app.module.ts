@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrationComponent } from './registration/registration.component';
 import { FormappComponent } from './formapp/formapp.component';
 import { LoginComponent } from './login/login.component';
@@ -24,6 +24,8 @@ import { ProgressBarComponent } from './student-progress/student-progress-class/
 import { NgxSpinnerModule } from "ngx-spinner";
 import {BrowserAnimationsModule, NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {environment} from 'src/environments/environment';
+import { CounterDirective } from './student-progress/counter.directive';
+import { Counter2Directive } from './student-progress/counter2.directive';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import {environment} from 'src/environments/environment';
     ClassSelectionComponent,
     AvailableClassesComponent,
     StudentProgressClassComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    CounterDirective,
+    Counter2Directive
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,8 @@ import {environment} from 'src/environments/environment';
     AppRoutingModule,
 	HttpClientModule,
 	ReactiveFormsModule,
-  NgxSpinnerModule
+  NgxSpinnerModule,
+  FormsModule
   
   ],
   providers: [AuthService, AuthGuard],

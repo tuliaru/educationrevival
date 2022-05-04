@@ -1,11 +1,16 @@
 
+
 <div class="dashboard-class-box">
     <div class="row align-items-center">
         
         <div class="col-lg-3 col-md-6 col-sm-12" #divCourseName></div>
 
         <div class="col-lg-2 col-md-6 col-sm-12 text-center">
-            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" (click)="showVideo()"  data-bs-target="#videosModal" >{{courseStarted ? 'Started':'Not Started'}}</a>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" (click)="showVideo()"  data-bs-target="#videosModal">Start/Resume</a>
+        </div>
+
+        <div class="col-lg-2 col-md-6 col-sm-12 text-center">
+            {{courseStarted ? 'In Progress':'Not Started'}}
         </div>
 
         <div class="col-lg-5 col-md-6 col-sm-12">

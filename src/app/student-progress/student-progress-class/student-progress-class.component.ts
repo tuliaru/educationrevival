@@ -14,6 +14,8 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
   reqPayload1  = <any>{};
   reqPayload2  = <any>{};
   reqPayload3  = <any>{};
+  reqSegmentValues  = <any>{};
+  
   courseid:number | undefined;
   SegmentId:number | undefined
   TotalScorePossible:number = 0;
@@ -24,6 +26,7 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
   courseStarted:boolean = false;
   getScoreValue: string | undefined;
   VideoAddress: string = "";
+  StartingMessage: string = "";
   getProgressBarValue: string | undefined;
   getProgressBarStyleWidth: number | undefined;
   getProgressBarAreaValueNow: number | undefined;
@@ -34,9 +37,12 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
   @ViewChild("videoModalTempRef") videoModalTempRef?: ElementRef;
   @ViewChild("videoTag") videoTag?: ElementRef;
   
+  
   @Output() onVideoClicked = new EventEmitter<any>();
   @Output() onGetSubjectName = new EventEmitter<any>();
-
+  @Output() onGetCourseId = new EventEmitter<any>();
+  @Output() onGetSegmentId = new EventEmitter<any>();
+  
   
   constructor(private renderer: Renderer2, 
               private registerStudentForClassService:RegisterStudentForClassService,
@@ -87,6 +93,8 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
     
     this.registerStudentForClassService.getNextSegment(this.reqPayload3).subscribe((res:any) => {
       
+      this.SegmentId = res.segmentId;
+
       this.reqPayload2 = {
         function: "getVideo",
         segmentId: res.segmentId,
@@ -96,12 +104,6 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
       this.registerStudentForClassService.getVideo(this.reqPayload2).subscribe((res:any) => {
         console.log(res);
         this.VideoAddress = res.videoAddress
-        
-        /*
-        this.VideoAddress =  "http://209.59.175.99/~educationrevival/videos/"+res.videoAddress;
-        this.getVideoSourceTag = '<source src="'+this.VideoAddress+'" type="video/mp4" >';
-        this.renderer.setProperty(this.videoTag?.nativeElement,'innerHTML', this.getVideoSourceTag);
-        */
       });
    });
 
@@ -124,6 +126,8 @@ export class StudentProgressClassComponent implements OnInit, AfterViewInit, Aft
     //console.log(this.VideoAddress);
     this.onVideoClicked.emit(this.VideoAddress);
     this.onGetSubjectName.emit(this.courseobj.courseName);
-   
+    this.onGetCourseId.emit(this.courseid);
+    this.onGetSegmentId.emit(this.SegmentId);
   }
+  
 }
