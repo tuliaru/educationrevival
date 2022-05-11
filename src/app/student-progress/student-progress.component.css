@@ -179,7 +179,7 @@ text-align: right;
     }
     .modal .hdr-rgt {
     position: absolute;
-    right: -40px;
+    right: 0px;
     top: 20px;
     }
     .modal .hdr-rgt span.time {

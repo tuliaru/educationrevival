@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, NgForm } from '@angular/forms';
 
 
 import { RegisterStudentForClassService } from '../services/registerStudentForClass/register-student-for-class.service';
@@ -11,15 +11,31 @@ import { RegisterStudentForClassService } from '../services/registerStudentForCl
 })
 export class StudentProgressComponent implements OnInit {
 
-  reqPayload1  = <any>{};
-  reqPayload2  = <any>{};
-  reqPayload3  = <any>{};
+  reqPayload1 = <any>{};
+  reqPayload2 = <any>{};
+  reqPayload3 = <any>{};
+  reqPayload4 = <any>{};
+  reqPayload5 = <any>{};
+  reqPayload6 = <any>{};
+  reqPayload7 = <any>{};
   
   VideoAddress: string = "";
   videoName: string = "";
   courseId!: number; 
   segmentId!: number;
   closeStatus!:boolean;
+  courseStartOrResume:string | undefined;
+  LastCompletedModule:number = 0;
+  NumberOfGradedModules:number = 0;
+  getProgressBarValue: string | undefined;
+  getProgressBarStyleWidth: number | undefined;
+  getProgressBarAreaValueNow: number | undefined;
+  TotalScorePossible:number = 0;
+  TotalScore:number = 0;
+  getScoreValue: string | undefined;
+
+  //HashMapAnswerMap:any;
+  HashMapAnswerMap:Object = {};
   //counterValue!: any;
   //counterValue2!: any;
   getVideoSourceTag: string | undefined;
@@ -30,11 +46,15 @@ export class StudentProgressComponent implements OnInit {
   listOfQuestionsData: {questionNumber: number, typeOfQuestion: number, questionLabel: string, questionData: any}[] = [];
 
   DataForm: FormGroup = new FormGroup({});
-  questionNumber!: FormGroup 
-  nameField = new FormControl("");
-  reqPayload4 = <any>{};
+  questionNumber:number = 1;
+  ctrl = new FormControl("");
+  //nameField1 = new FormControl("");
+  //nameField2 = new FormArray([]);
+  //nameField3 = new FormControl("");
 
-  counter2 = 60;
+  
+
+  counter2 = 180000;
   interval2 = 1000;
 
   counter3Value = 60;
@@ -54,7 +74,7 @@ export class StudentProgressComponent implements OnInit {
   @ViewChild("hiddenButtonTimeModal") hiddenButtonTimeModal?: ElementRef;
   @ViewChild("OkButtonTimeModal") OkButtonTimeModal?: ElementRef;
   @ViewChild("CloseButtonTimeModal") CloseButtonTimeModal?: ElementRef;
-  
+  @ViewChild("divScoreValue") divScoreValue?: ElementRef;
   
   constructor(private renderer: Renderer2, 
               private registerStudentForClassService:RegisterStudentForClassService, 
@@ -63,6 +83,14 @@ export class StudentProgressComponent implements OnInit {
               ) {
                 //this.questionNumber = this.fb.group({questionNumber: ''});
                 //this.DataForm = this.generateFormControls(this.listOfQuestionsData);
+              
+                this.DataForm = this.fb.group({
+                  nameField1: this.fb.array([]),
+                  nameField2: this.fb.array([]),
+                  nameField3: this.fb.array([])
+                })
+                
+
               }
   
 
@@ -88,7 +116,7 @@ export class StudentProgressComponent implements OnInit {
     clearInterval(this.myTimer);
     this.minutes = 0;
     this.seconds = 0;
-    this.counter2 = 60;
+    this.counter2 = 180000;
     this.counter3 = this.counter3Value;
     //console.log("counter2="+this.counter2);
 
@@ -188,9 +216,14 @@ export class StudentProgressComponent implements OnInit {
       if(this.counter2 > 0) {
         this.counter2--;
 
-        this.minutes = Math.floor((this.counter2 % 60)/60);
+        /******FOR 1 MINUTE *****/
+        //this.minutes = Math.floor((this.counter2 % 60)/60);
+        //this.seconds = Math.floor(this.counter2 % 60);
+
+        /******FOR 3 MINUTES ********/
+        this.minutes = Math.floor((this.counter2  % (60*3))/60);
         this.seconds = Math.floor(this.counter2 % 60);
-        
+         
       } else {
         
         this.StopTimerModal();
@@ -239,37 +272,182 @@ export class StudentProgressComponent implements OnInit {
     },this.interval3)
 
   }
-
-  /*
-  submitData(myForm:any){
-
-    this.reqPayload4 = {
-        function: "evaluateAnswer",
-        segmentId: this.segmentId,
-        courseId: this.courseId,
-        questionNumber: this.questionNumber.get('questionNumber')?.value,
-        answer: " a = 1  "
-    };
-
-    //this.payLoad = JSON.stringify(this.DataForm.value);
-  }
-  */
- 
-  /*
-  generateFormControls(formData: any)
-  {
-      let tempGroup: FormGroup = new FormGroup({});
-      formData.forEach((i: { name: string; })=>{
-          tempGroup.addControl(i.name, new FormControl(''))
-      })
-      return tempGroup;
-  }
-  */
   
-  onSubmit(myForm:any){
-    console.log(myForm);
-    //console.log(myForm.form.value.inputs);
+  
+  onSubmit(qType:number){
+
+      console.log(this.DataForm);
+
+      let ans:any;
+      /*
+      if(qType==1){
+        ans = this.DataForm.get('nameField1')?.value;  
+      }else if(qType==2){
+        ans = this.DataForm.get('nameField2')?.value;
+        ans = ans.join(';');
+      }else{
+        ans = this.DataForm.get('nameField3')?.value;
+      }
+      */
+
+      if(qType==2){
+        ans = this.DataForm.get('nameField2')?.value;
+        ans = ans.join(';');
+      }else{
+        ans = this.DataForm.get('nameField3')?.value;
+        ans = ans.join('');
+      }
+      
+    
+      this.reqPayload4 = {
+          function: "evaluateAnswer",
+          segmentId: this.segmentId,
+          courseId: this.courseId,
+          questionNumber: this.questionNumber,
+          answer: ans
+      };
+        
+      console.log(this.reqPayload4);
+
+      let ref:any = this;
+      this.registerStudentForClassService.evaluateAnswer(ref.reqPayload4).subscribe((res:any) => {
+
+        console.log(res);
+
+        ref.HashMapAnswerMap[ref.questionNumber] = res.result;
+        
+        ref.DataForm = ref.fb.group({
+          nameField2: ref.fb.array([]),
+          nameField3: ref.fb.array([])
+        })
+
+        ref.questionNumber++;
+
+        if(ref.totalQuestionNo == (ref.questionNumber - 1)){
+
+            console.log("recordAssessment");
+            console.log(ref.HashMapAnswerMap);
+            const user = JSON.parse(localStorage.getItem('currentUser')!);
+
+            ref.reqPayload5 = {
+                function: "recordAssessment",
+                answerMap: ref.HashMapAnswerMap,
+                studentId: user.userId,
+                segmentId: ref.segmentId,
+                courseId: ref.courseId
+            };
+
+            ref.registerStudentForClassService.recordAssessment(ref.reqPayload5).subscribe((res:any) => {
+              console.log(res);
+
+              
+              /**************************** START SCORE AND PROGRESS BAR UPDATE*******/
+              /*
+              this.reqPayload6 = {
+                function: "getCompletedAndTotalModules",
+                studentId: user.userId,
+                courseId: ref.courseId
+              };
+          
+              this.registerStudentForClassService.getCompletedAndTotalModules(this.reqPayload6).subscribe((res:any) => {
+                
+                this.LastCompletedModule = res.lastCompletedModule;
+                if(this.LastCompletedModule==0){
+                  this.courseStartOrResume = 'Start';
+                }else{
+                  this.courseStartOrResume = 'Resume';
+                }
+                this.NumberOfGradedModules = res.numberOfGradedModules;
+                this.getProgressBarValue = this.LastCompletedModule+'/'+this.NumberOfGradedModules;
+                this.getProgressBarStyleWidth = Math.round((this.LastCompletedModule/this.NumberOfGradedModules)*100);
+                this.getProgressBarAreaValueNow = this.getProgressBarStyleWidth;
+                
+              });
+              
+              this.reqPayload7 = {
+                function: "getActualAndTotalPossibleScores",
+                studentId: user.userId,
+                courseId: ref.courseId
+              };
+
+              this.registerStudentForClassService.getActualAndTotalPossibleScores(this.reqPayload7).subscribe((res:any) => {
+                this.TotalScore = res.totalScore;
+                this.TotalScorePossible = res.totalScorePossible;
+                this.getScoreValue = this.TotalScorePossible+'/'+this.TotalScore;
+                const getActualAndTotalPossibleScoresValueHTML = '<div class="score-label">Score ( '+this.getScoreValue+' )</div>'
+                this.renderer.setProperty(this.divScoreValue?.nativeElement,'innerHTML', getActualAndTotalPossibleScoresValueHTML);
+              });
+
+              */
+                  ref.listOfCurrentClasses = [];
+
+                  ref.reqPayload1 = {
+                          function: "getListOfCurrentClasses",
+                          studentId: user.userId
+                        };
+                        ref.registerStudentForClassService.getListOfCurrentClasses(ref.reqPayload1).subscribe((res:any) => {
+                        res.forEach((item:any) => {
+                          ref.listOfCurrentClasses.push(item);
+                            });
+                        });
+
+                 /**************************** END SCORE AND PROGRESS BAR UPDATE*******/
+             
+            });
+            
+        }
+        
+        
+        
+      });
+      
+
+        
+
   }
+
+  /*
+  get questionNumber(): any {
+    return this.DataForm.get('questionNumber');
+  }
+  */
+
+  onCheckChange(event:any) {
+    const formArray: FormArray = this.DataForm.get('nameField2') as FormArray || [];
+  
+    /* Selected */
+    if(event.target.checked){
+      // Add a new control in the arrayForm
+      console.log(event.target.value);
+      formArray.push(new FormControl(event.target.value));
+    }
+    /* unselected */
+    else{
+      // find the unselected element
+      let i: number = 0;
+      console.log("formArray.controls=",formArray.controls);
+      
+      formArray.controls.forEach((ctrl) => {
+        if(ctrl.value == event.target.value) {
+          // Remove the unselected element from the arrayForm
+          formArray.removeAt(i);
+          return;
+        }
+  
+        i++;
+      });
+      
+    }
+  }
+
+  onBlur(event:any) {
+    const formArray: FormArray = this.DataForm.get('nameField3') as FormArray || [];
+    // Add a new control in the arrayForm
+      console.log(event.target.value);
+      formArray.push(new FormControl(event.target.value));
+  }
+
+
 }
 
 

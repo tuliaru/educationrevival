@@ -10,7 +10,9 @@ import { RegisterStudentForClass,
 			Video, 
 			NextSegment,
 			IsAssessmentGiven,
-			SegmentAssessment
+			SegmentAssessment,
+			EvaluateAnswer,
+			RecordAssessment
 		} from './register-student-for-class';
 
 @Injectable({
@@ -115,6 +117,22 @@ export class RegisterStudentForClassService {
 
 	getSegmentAssessment(segmentAssessment: SegmentAssessment): Observable<any> {
 		return this.httpClient.post(this.apiURL , JSON.stringify(segmentAssessment), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	evaluateAnswer(evaluateAnswer: EvaluateAnswer): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(evaluateAnswer), this.httpOptions)
+	  
+		.pipe(
+		  catchError(this.errorHandler)
+		)
+	}
+
+	recordAssessment(recordAssessment: RecordAssessment): Observable<any> {
+		return this.httpClient.post(this.apiURL , JSON.stringify(recordAssessment), this.httpOptions)
 	  
 		.pipe(
 		  catchError(this.errorHandler)

@@ -6,7 +6,7 @@
         <div class="col-lg-3 col-md-6 col-sm-12" #divCourseName></div>
 
         <div class="col-lg-2 col-md-6 col-sm-12 text-center">
-            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" (click)="showVideo()"  data-bs-target="#videosModal">Start/Resume</a>
+            <a class="btn btn-dark btn-sm" data-bs-toggle="modal" (click)="showVideo()"  data-bs-target="#videosModal">{{courseStartOrResume}}</a>
         </div>
 
         <div class="col-lg-2 col-md-6 col-sm-12 text-center">
@@ -22,16 +22,6 @@
 
         <div class="col-lg-2 col-md-6 col-sm-12" #divScoreValue>
         </div>
-        <!--
-        <div *ngIf="isLoading" class="text-center">
-			<div class="spinner-border" role="status">
-			  <span class="visually-hidden">Loading...</span>
-			</div>
-		</div>
-        -->
-        <!--<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-            <p style="color: rgb(88, 8, 8)">Please Wait. </p>  
-        </ngx-spinner> 
-        -->
+       
     </div>
 </div>

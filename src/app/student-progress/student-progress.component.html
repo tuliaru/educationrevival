@@ -7,7 +7,7 @@
       <div class="modal-content">
         <div class="modal-body">
             <div class="modal-header">
-                <h2>The next segment<br> is about to begin.</h2>
+                <h2>Segment Assessment is<br> about to begin</h2>
               </div>
 			<div class="time-box">
                 <div class="time-count">
@@ -45,28 +45,31 @@
                     </span>
                 </div>
               </div>
-           <form #myForm="ngForm" [formGroup]="DataForm" (ngSubmit)="onSubmit(myForm)" > 
+           <form  [formGroup]="DataForm" (ngSubmit)="onSubmit(questionsData.typeOfQuestion)" > 
                 <div class="question-box">
                         <h4>{{questionsData.questionLabel}}</h4>
 
                         <div *ngIf="questionsData.questionData!=''">
                             <div   *ngFor="let questionItemData of questionsData.questionData?.split(';'); let item = index" class="form-check">
-                                <input [formControl]="nameField" value="{{questionItemData}}" class="form-check-input" *ngIf="questionsData.typeOfQuestion==1" type="radio"  id="{{'flexRadioDefault'+item}}">
-                                <input [formControl]="nameField" value="{{questionItemData}}" class="form-check-input" *ngIf="questionsData.typeOfQuestion==2" type="checkbox" id="{{'flexRadioDefault'+item}}">
+                                <input (change)="onCheckChange($event)" value="{{item+1}}" class="form-check-input" *ngIf="questionsData.typeOfQuestion==1" type="radio"  id="{{'flexRadioDefault'+item}}">
+                                <input (change)="onCheckChange($event)" value="{{item+1}}" class="form-check-input" *ngIf="questionsData.typeOfQuestion==2" type="checkbox" id="{{'flexRadioDefault'+item}}">
                                 <label for="{{'flexRadioDefault'+item}}" class="form-check-label" >{{questionItemData}}</label>
                             </div>
                         </div>
-
-                        <div *ngIf="questionsData.questionData==''">
-                            <input [formControl]="nameField" type="textbox"  id="{{'flexRadioDefault'+index}}"  class="form-check-input" >
-                            <label class="form-check-label" for="{{'flexRadioDefault'+index}}">{{'Please enter your value'}}</label>
+                        
+                        <div *ngIf="questionsData.typeOfQuestion==3">
+                            <div class="form-check">
+                                <input (blur) = "onBlur($event)" type="textbox" id="{{'flexRadioDefault'+index}}"  class="form-check-input" >
+                                <label class="form-check-label" for="{{'flexRadioDefault'+index}}">{{'Please enter your value'}}</label>
+                            </div>
                         </div>
+                    
                 </div>
                 <div class="mt-5 center">
                     <button id="assesmentqtypeOneModalClose{{index}}" hidden type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Close</button>
-                    <input  type="hidden" name="questionNumber" value="{{ questionsData.questionNumber }}" />
+                    <!--<input  type="text" [formControl]="questionType"  value="{{questionsData.typeOfQuestion}}" />-->
                     <button id="assesmentqtypeOneModalSubmit{{index}}" (click)="show2(index)"  type="submit" *ngIf="index < (totalQuestionNo-1)" [attr.data-bs-target]="'#assesmentqtypeOneModal'+(index+1)" data-bs-toggle="modal"  aria-label="Submit" class="btn btn-primary btn-sm btn-close">Submit</button>
-                    <button id="assesmentqtypeOneModalSubmit{{index}}" (click)="show2(index)"  type="submit" *ngIf="index == (totalQuestionNo-1)"   class="btn btn-primary btn-sm btn-close">Submit2</button>
+                    <button id="assesmentqtypeOneModalSubmit{{index}}" (click)="show2(index)"  type="submit" *ngIf="index == (totalQuestionNo-1)"   class="btn btn-primary btn-sm btn-close">Submit</button>
                 </div>
             </form>
 		 </div>
@@ -112,7 +115,7 @@
                 (onGetSubjectName)="doSomething2($event)" 
                 (onGetCourseId)="doSomething3($event)" 
                 (onGetSegmentId)="doSomething4($event)" 
-                [courseobj]="allclasses"></app-student-progress-class>
+                [courseobj]="allclasses" ></app-student-progress-class>
             </ng-container>
 
             <!--

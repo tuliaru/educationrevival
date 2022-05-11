@@ -63,3 +63,19 @@ export interface SegmentAssessment {
 	segmentId: number;
 	courseId: number;
 }
+
+export interface EvaluateAnswer {
+	function: string;
+	segmentId: number;
+	courseId: number;
+	questionNumber: number,
+	answer: string
+}
+
+export interface RecordAssessment {
+	function: string,
+	answerMap: any,
+	studentId: number,
+	segmentId: number,
+	courseId: number,
+}
