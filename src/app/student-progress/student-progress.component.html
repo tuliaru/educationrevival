@@ -101,6 +101,30 @@
 	</div>
 </div>
 
+<button data-bs-toggle="modal" data-bs-target="#scoreModal"  hidden #hiddenButtonForScoreModal >Open Score Display Modal</button>
+<!--After Recordassessment API Return Score Display modal-->
+<div  class="modal fade" [ngStyle]="{'z-index': 999999 }"  id="scoreModal" tabindex="-1" aria-labelledby="videosModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+            <div class="modal-header">
+                <h2>Score</h2>
+            </div>
+			<div class="video-box">
+                <div class="ratio ratio-16x9">
+                   
+                </div>
+            </div>
+            <div class="center">
+                <button  type="button" data-bs-dismiss="modal" aria-label="Close" class="btn btn-danger btn-close">Close</button>
+            </div>
+		 </div>
+	</div>
+	</div>
+</div>
+
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-12 p-lg-5 add-padding">

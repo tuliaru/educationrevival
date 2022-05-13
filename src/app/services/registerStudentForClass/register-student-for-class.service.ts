@@ -22,15 +22,23 @@ export class RegisterStudentForClassService {
 
   //private apiURL = "http://209.59.175.99/~educationrevival/backend/index.php";
   private apiURL = "/~educationrevival/backend/index.php";
-	
+  private currentUser;
+  private httpOptions;
 	/*------------ Http Header Options ----------*/
-	httpOptions = {
-		headers: new HttpHeaders({
-		  'Content-Type': 'application/json'
-		})
-	}
+	
 
-	constructor(private httpClient: HttpClient) { }
+	constructor(private httpClient: HttpClient) {
+		
+		this.currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+
+		this.httpOptions = {
+			headers: new HttpHeaders({
+			  'Content-Type': 'application/json',
+			  'Authorization': `Bearer ${this.currentUser.token}`
+			})
+		}
+
+	 }
 	
 	create(registerStudentForClass:RegisterStudentForClass): Observable<any> {
   

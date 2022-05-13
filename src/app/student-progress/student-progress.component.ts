@@ -32,8 +32,10 @@ export class StudentProgressComponent implements OnInit {
   getProgressBarAreaValueNow: number | undefined;
   TotalScorePossible:number = 0;
   TotalScore:number = 0;
+  Score:number = 0;
+  MaxScore:number = 0;
   getScoreValue: string | undefined;
-
+  
   //HashMapAnswerMap:any;
   HashMapAnswerMap:Object = {};
   //counterValue!: any;
@@ -75,6 +77,8 @@ export class StudentProgressComponent implements OnInit {
   @ViewChild("OkButtonTimeModal") OkButtonTimeModal?: ElementRef;
   @ViewChild("CloseButtonTimeModal") CloseButtonTimeModal?: ElementRef;
   @ViewChild("divScoreValue") divScoreValue?: ElementRef;
+  @ViewChild("hiddenButtonForScoreModal") hiddenButtonForScoreModal?: ElementRef;
+  
   
   constructor(private renderer: Renderer2, 
               private registerStudentForClassService:RegisterStudentForClassService, 
@@ -339,8 +343,12 @@ export class StudentProgressComponent implements OnInit {
 
             ref.registerStudentForClassService.recordAssessment(ref.reqPayload5).subscribe((res:any) => {
               console.log(res);
+              ref.Score = res.score;
+              ref.MaxScore = res.maxScore;
+              const scoreModalText = 'You passed with '+ref.Score+' out of '+ref.MaxScore;
+              this.elem.nativeElement.querySelector('#scoreModal .modal-body .video-box .ratio.ratio-16x9').innerHTML = scoreModalText;
+              this.hiddenButtonForScoreModal?.nativeElement.click();
 
-              
               /**************************** START SCORE AND PROGRESS BAR UPDATE*******/
               /*
               this.reqPayload6 = {
